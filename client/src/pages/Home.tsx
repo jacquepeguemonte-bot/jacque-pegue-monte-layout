@@ -21,6 +21,7 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
+import { CATALOG_CATEGORIES, CATALOG_THEMES } from "@/data/catalogThemes";
 
 const WHATSAPP = "https://wa.me/5562981695886?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20kits%20da%20Jacque%20Pegue%20e%20Monte!";
 
@@ -33,26 +34,12 @@ const NAV_ITEMS = [
   { label: "Contato", href: "#contato" },
 ];
 
-const FEATURED_THEMES = [
-  {
-    name: "Minnie Floral",
-    category: "Infantil meninas",
-    image: "/manus-storage/tema-minnie_ea714f33.jpeg",
-    tint: "linear-gradient(180deg, transparent 34%, rgba(103, 34, 60, .84) 100%)",
-  },
-  {
-    name: "Super Mario",
-    category: "Infantil meninos",
-    image: "/manus-storage/tema-super-mario_b6a25335.jpeg",
-    tint: "linear-gradient(180deg, transparent 34%, rgba(22, 57, 92, .86) 100%)",
-  },
-  {
-    name: "Minecraft",
-    category: "Infantil unissex",
-    image: "/manus-storage/tema-minecraft_a5b890a9.jpg",
-    tint: "linear-gradient(180deg, transparent 34%, rgba(23, 57, 55, .87) 100%)",
-  },
-];
+const CATEGORY_TINTS = {
+  Infantil: "linear-gradient(180deg, transparent 31%, rgba(75, 35, 61, .86) 100%)",
+  Temáticos: "linear-gradient(180deg, transparent 31%, rgba(68, 59, 31, .86) 100%)",
+  Esportes: "linear-gradient(180deg, transparent 31%, rgba(21, 54, 64, .88) 100%)",
+  Celebrações: "linear-gradient(180deg, transparent 31%, rgba(104, 45, 61, .87) 100%)",
+} as const;
 
 const STEPS = [
   ["01", "Escolha seu tema", "Navegue pelo acervo, encontre o kit que combina com sua celebração e fale com a gente."],
@@ -94,8 +81,10 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
+  const [activeCategory, setActiveCategory] = useState<(typeof CATALOG_CATEGORIES)[number]>("Todos");
 
   const closeMenu = () => setMenuOpen(false);
+  const visibleThemes = activeCategory === "Todos" ? CATALOG_THEMES : CATALOG_THEMES.filter((theme) => theme.category === activeCategory);
 
   return (
     <main className="site-shell">
@@ -142,7 +131,7 @@ export default function Home() {
           <h2 id="sobre-heading">Escolha, retire, monte.<br /><em>Do seu jeito.</em></h2>
           <p>Na Jacque Pegue e Monte, acreditamos que montar uma comemoração pode ser simples, afetiva e cheia de estilo. Você encontra o tema, pega as peças com praticidade e cria o cenário para o seu momento.</p>
           <div className="story-metrics">
-            <div><strong>+30</strong><span>temas no acervo</span></div>
+            <div><strong>+{CATALOG_THEMES.length}</strong><span>temas no acervo</span></div>
             <div><strong>20 min</strong><span>para montar com calma</span></div>
           </div>
           <a className="text-link" href="#como-funciona">Entenda a experiência <ArrowUpRight size={17} /></a>
@@ -154,17 +143,23 @@ export default function Home() {
         <div className="section-intro section-intro--center">
           <Eyebrow>Acervo Jacque</Eyebrow>
           <h2 id="temas-heading">Temas para virar<br /><em>o cenário da sua história.</em></h2>
-          <p>Uma seleção viva para festas infantis, comemorações em família e encontros que pedem um toque só seu.</p>
+          <p>Explore {CATALOG_THEMES.length} temas para festas infantis, comemorações em família e encontros que pedem um toque só seu.</p>
         </div>
-        <div className="theme-rail" aria-label="Temas em destaque">
-          {FEATURED_THEMES.map((theme, index) => (
-            <article className="theme-card" key={theme.name} style={{ "--theme-image": `url(${theme.image})`, "--theme-tint": theme.tint } as React.CSSProperties}>
+        <div className="catalog-toolbar" aria-label="Filtros do catálogo">
+          <p><strong>{visibleThemes.length}</strong> {visibleThemes.length === 1 ? "tema encontrado" : "temas encontrados"}</p>
+          <div className="catalog-filters" role="group" aria-label="Filtrar temas por categoria">
+            {CATALOG_CATEGORIES.map((category) => <button className={`filter-pill${activeCategory === category ? " filter-pill--active" : ""}`} key={category} type="button" onClick={() => setActiveCategory(category)} aria-pressed={activeCategory === category}>{category}</button>)}
+          </div>
+        </div>
+        <div className="theme-rail" aria-label="Catálogo de temas">
+          {visibleThemes.map((theme, index) => (
+            <article className="theme-card" key={theme.name} style={{ "--theme-image": `url(${theme.image})`, "--theme-tint": CATEGORY_TINTS[theme.category] } as React.CSSProperties}>
               <div className="theme-card__top"><span>{String(index + 1).padStart(2, "0")}</span><span>{theme.category}</span></div>
-              <div className="theme-card__copy"><h3>{theme.name}</h3><a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label={`Consultar tema ${theme.name}`}>Consultar <ArrowUpRight size={16} /></a></div>
+              <div className="theme-card__copy"><h3>{theme.name}</h3><p>{theme.price}</p><a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label={`Consultar tema ${theme.name}`}>Consultar tema <ArrowUpRight size={16} /></a></div>
             </article>
           ))}
         </div>
-        <div className="catalog-action"><a className="button button--primary" href={WHATSAPP} target="_blank" rel="noreferrer">Quero ver o acervo completo <ArrowUpRight size={18} /></a></div>
+        <div className="catalog-action"><a className="button button--primary" href={WHATSAPP} target="_blank" rel="noreferrer">Falar sobre um tema <ArrowUpRight size={18} /></a></div>
       </section>
 
       <section className="steps-section" id="como-funciona" aria-labelledby="como-heading">
