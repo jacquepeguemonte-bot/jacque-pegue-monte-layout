@@ -2,8 +2,13 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const project = '/home/ubuntu/jacque-pegue-monte-layout';
-const manifest = JSON.parse(await fs.readFile(path.join(project, 'data/catalogo-importado.json'), 'utf8'));
-const uploadLog = await fs.readFile(path.join(project, 'data/upload-catalog-assets.log'), 'utf8');
+const syncedManifest = path.join(project, 'data/catalogo-sincronizado.json');
+const manifestPath = await fs.access(syncedManifest).then(() => syncedManifest).catch(() => path.join(project, 'data/catalogo-importado.json'));
+const manifest = JSON.parse(await fs.readFile(manifestPath, 'utf8'));
+const uploadLog = [
+  await fs.readFile(path.join(project, 'data/upload-catalog-assets.log'), 'utf8'),
+  await fs.readFile(path.join(project, 'data/upload-xlsx-new-assets.log'), 'utf8').catch(() => ''),
+].join('\n');
 const assetDir = '/home/ubuntu/webdev-static-assets/jacque-catalog';
 const files = await fs.readdir(assetDir);
 

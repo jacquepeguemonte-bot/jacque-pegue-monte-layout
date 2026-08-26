@@ -1,0 +1,17 @@
+/home/ubuntu/webdev-static-assets/jacque-catalog/guns-n-roses.jpg
+/home/ubuntu/webdev-static-assets/jacque-catalog/roblox.png
+/home/ubuntu/webdev-static-assets/jacque-catalog/turma-da-monica.png
+/home/ubuntu/webdev-static-assets/jacque-catalog/casamento.jpg
+/home/ubuntu/webdev-static-assets/jacque-catalog/cha-de-panela-verde.png
+/home/ubuntu/webdev-static-assets/jacque-catalog/boho-verde-e-dourado.jpg
+/home/ubuntu/webdev-static-assets/jacque-catalog/cha-de-bebe-azul-ursinho.png
+/home/ubuntu/webdev-static-assets/jacque-catalog/oh-baby-ursinho-verde-e-dourado.png
+/home/ubuntu/webdev-static-assets/jacque-catalog/jardim-de-borboletas-rosa-e-lilas.jpg
+/home/ubuntu/webdev-static-assets/jacque-catalog/lara-roxo-personalizado.jpg
+/home/ubuntu/webdev-static-assets/jacque-catalog/dourado-luxo.jpg
+/home/ubuntu/webdev-static-assets/jacque-catalog/retro-laranja.jpg
+/home/ubuntu/webdev-static-assets/jacque-catalog/romantico-floral-dourado.png
+/home/ubuntu/webdev-static-assets/jacque-catalog/casamento-elegante-branco-e-dourado.jpg
+/home/ubuntu/webdev-static-assets/jacque-catalog/batizado-anjinho-lilas-e-branco.jpg
+/home/ubuntu/webdev-static-assets/jacque-catalog/dinossauro.jpg
+/home/ubuntu/webdev-static-assets/jacque-catalog/debutante-15-anos.png

@@ -12,3 +12,10 @@
 - [x] Organizar os temas em categorias compatíveis com o catálogo.
 - [x] Relacionar cada tema a uma imagem disponível ou sinalizar o ativo faltante.
 - [x] Atualizar a grade de temas e validar a visualização responsiva.
+
+## Sincronização da planilha XLSX atualizada
+
+- [x] Ler as abas e colunas da planilha XLSX fornecida.
+- [x] Comparar temas, preços e links de imagem com o catálogo atual.
+- [x] Importar ativos novos ou alterados e regenerar os dados do catálogo.
+- [x] Validar filtros, imagens e contadores após a sincronização.

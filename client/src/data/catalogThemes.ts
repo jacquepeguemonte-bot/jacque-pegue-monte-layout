@@ -90,7 +90,7 @@ export const CATALOG_THEMES: CatalogTheme[] = [
   },
   {
     "name": "Oh Baby",
-    "category": "Infantil",
+    "category": "Celebrações",
     "price": "R$ 170",
     "image": "/manus-storage/oh-baby_3bcfde79.jpg"
   },
@@ -285,6 +285,108 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "category": "Infantil",
     "price": "R$ 170",
     "image": "/manus-storage/sonic_5cc3656e.png"
+  },
+  {
+    "name": "Guns N' Roses",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/guns-n-roses_0e3a4883.jpg"
+  },
+  {
+    "name": "Roblox",
+    "category": "Infantil",
+    "price": "R$ 170",
+    "image": "/manus-storage/roblox_517419f1.png"
+  },
+  {
+    "name": "Turma da Mônica",
+    "category": "Infantil",
+    "price": "R$ 170",
+    "image": "/manus-storage/turma-da-monica_7b8a2f21.png"
+  },
+  {
+    "name": "Casamento",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/casamento_58b6b190.jpg"
+  },
+  {
+    "name": "Chá de Panela Verde",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/cha-de-panela-verde_c508031d.png"
+  },
+  {
+    "name": "Boho Verde e Dourado",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/boho-verde-e-dourado_c64f673a.jpg"
+  },
+  {
+    "name": "Chá de Bebê Azul Ursinho",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/cha-de-bebe-azul-ursinho_492858d3.png"
+  },
+  {
+    "name": "Oh Baby Ursinho Verde e Dourado",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/oh-baby-ursinho-verde-e-dourado_39c46443.png"
+  },
+  {
+    "name": "Jardim de Borboletas Rosa e Lilás",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/jardim-de-borboletas-rosa-e-lilas_1716ded2.jpg"
+  },
+  {
+    "name": "Lara Roxo Personalizado",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/lara-roxo-personalizado_562fdd2f.jpg"
+  },
+  {
+    "name": "Dourado Luxo",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/dourado-luxo_e20f5a75.jpg"
+  },
+  {
+    "name": "Retro Laranja",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/retro-laranja_b6239cb3.jpg"
+  },
+  {
+    "name": "Romântico Floral Dourado",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/romantico-floral-dourado_29c7bac2.png"
+  },
+  {
+    "name": "Casamento Elegante Branco e Dourado",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/casamento-elegante-branco-e-dourado_6a56383b.jpg"
+  },
+  {
+    "name": "Batizado Anjinho Lilás e Branco",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/batizado-anjinho-lilas-e-branco_22369073.jpg"
+  },
+  {
+    "name": "Dinossauro",
+    "category": "Infantil",
+    "price": "R$ 170",
+    "image": "/manus-storage/dinossauro_4212b0dd.jpg"
+  },
+  {
+    "name": "Debutante 15 Anos",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/debutante-15-anos_9c62b1ab.png"
   }
 ];
 
