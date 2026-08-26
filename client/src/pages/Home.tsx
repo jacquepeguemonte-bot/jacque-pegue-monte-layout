@@ -3,7 +3,7 @@
  * atmosfera pastel e rosa pitanga para conversão. A referência inspira a composição,
  * mas esta página usa conteúdo e ativos próprios de Jacque Pegue e Monte.
  */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
   Check,
@@ -22,6 +22,14 @@ import {
   X,
 } from "lucide-react";
 import { CATALOG_CATEGORIES, CATALOG_THEMES } from "@/data/catalogThemes";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 const WHATSAPP = "https://wa.me/5562981695886?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20kits%20da%20Jacque%20Pegue%20e%20Monte!";
 
@@ -82,9 +90,14 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
   const [activeCategory, setActiveCategory] = useState<(typeof CATALOG_CATEGORIES)[number]>("Todos");
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
 
   const closeMenu = () => setMenuOpen(false);
   const visibleThemes = activeCategory === "Todos" ? CATALOG_THEMES : CATALOG_THEMES.filter((theme) => theme.category === activeCategory);
+
+  useEffect(() => {
+    carouselApi?.scrollTo(0, true);
+  }, [activeCategory, carouselApi]);
 
   return (
     <main className="site-shell">
@@ -151,13 +164,24 @@ export default function Home() {
             {CATALOG_CATEGORIES.map((category) => <button className={`filter-pill${activeCategory === category ? " filter-pill--active" : ""}`} key={category} type="button" onClick={() => setActiveCategory(category)} aria-pressed={activeCategory === category}>{category}</button>)}
           </div>
         </div>
-        <div className="theme-rail" aria-label="Catálogo de temas">
-          {visibleThemes.map((theme, index) => (
-            <article className="theme-card" key={theme.name} style={{ "--theme-image": `url(${theme.image})`, "--theme-tint": CATEGORY_TINTS[theme.category] } as React.CSSProperties}>
-              <div className="theme-card__top"><span>{String(index + 1).padStart(2, "0")}</span><span>{theme.category}</span></div>
-              <div className="theme-card__copy"><h3>{theme.name}</h3><p>{theme.price}</p><a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label={`Consultar tema ${theme.name}`}>Consultar tema <ArrowUpRight size={16} /></a></div>
-            </article>
-          ))}
+        <div className="theme-carousel-shell">
+          <Carousel setApi={setCarouselApi} opts={{ align: "start", containScroll: "trimSnaps" }} className="theme-carousel" aria-label="Carrossel de temas">
+            <CarouselContent className="theme-carousel__track">
+              {visibleThemes.map((theme, index) => (
+                <CarouselItem className="theme-carousel__slide" key={theme.name}>
+                  <article className="theme-card" style={{ "--theme-image": `url(${theme.image})`, "--theme-tint": CATEGORY_TINTS[theme.category] } as React.CSSProperties}>
+                    <div className="theme-card__top"><span>{String(index + 1).padStart(2, "0")}</span><span>{theme.category}</span></div>
+                    <div className="theme-card__copy"><h3>{theme.name}</h3><a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label={`Consultar tema ${theme.name}`}>Consultar tema <ArrowUpRight size={16} /></a></div>
+                  </article>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="theme-carousel__controls" aria-label="Controles do carrossel">
+              <CarouselPrevious className="theme-carousel__button" aria-label="Tema anterior" />
+              <CarouselNext className="theme-carousel__button" aria-label="Próximo tema" />
+            </div>
+          </Carousel>
+          <p className="carousel-guide">Arraste para explorar todos os temas ou use as setas para avançar.</p>
         </div>
         <div className="catalog-action"><a className="button button--primary" href={WHATSAPP} target="_blank" rel="noreferrer">Falar sobre um tema <ArrowUpRight size={18} /></a></div>
       </section>

@@ -13,3 +13,7 @@ Todos os 46 temas catalogáveis tiveram os respectivos ativos recuperados, envia
 A planilha XLSX enviada posteriormente contém 63 temas catalogáveis a R$ 170. Em comparação com a versão anterior, foram adicionados 17 temas e não houve remoções. Todas as 17 imagens novas foram recuperadas, armazenadas junto aos ativos do projeto e inseridas no catálogo tipado, que agora soma 63 cartões.
 
 A prévia confirmou o contador de 63 temas e a categoria Infantil com 33 itens. A interação de retorno para o filtro Todos restaurou os 63 cartões, verificando o funcionamento do catálogo após a sincronização.
+
+## Carrossel do catálogo
+
+Os 63 temas continuam íntegros, mas agora são apresentados em carrossel horizontal. Os preços foram retirados da interface; cada cartão mantém categoria, nome e o CTA de consulta. A prévia confirmou o avanço pelo controle de seta, que habilita o retorno após o primeiro deslocamento, e a orientação de arrastar ou usar setas está visível.

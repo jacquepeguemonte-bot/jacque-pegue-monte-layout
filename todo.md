@@ -19,3 +19,10 @@
 - [x] Comparar temas, preços e links de imagem com o catálogo atual.
 - [x] Importar ativos novos ou alterados e regenerar os dados do catálogo.
 - [x] Validar filtros, imagens e contadores após a sincronização.
+
+## Carrossel de temas sem preços
+
+- [x] Identificar no conteúdo anexado as diretrizes relevantes para a apresentação do catálogo.
+- [x] Remover a exibição de preço dos cartões de tema.
+- [x] Converter a grade de temas em carrossel com controles acessíveis e filtros preservados.
+- [x] Validar a navegação do carrossel em desktop e celular.
