@@ -35,40 +35,22 @@ const NAV_ITEMS = [
 
 const FEATURED_THEMES = [
   {
-    name: "Bailarina Floral",
+    name: "Minnie Floral",
     category: "Infantil meninas",
-    image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=900&q=85",
+    image: "/manus-storage/tema-minnie_ea714f33.jpeg",
     tint: "linear-gradient(180deg, transparent 34%, rgba(103, 34, 60, .84) 100%)",
   },
   {
-    name: "Faroeste Country",
+    name: "Super Mario",
     category: "Infantil meninos",
-    image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=900&q=85",
-    tint: "linear-gradient(180deg, transparent 34%, rgba(92, 52, 26, .86) 100%)",
+    image: "/manus-storage/tema-super-mario_b6a25335.jpeg",
+    tint: "linear-gradient(180deg, transparent 34%, rgba(22, 57, 92, .86) 100%)",
   },
   {
-    name: "Fazendinha Rosa",
-    category: "Infantil meninas",
-    image: "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?auto=format&fit=crop&w=900&q=85",
-    tint: "linear-gradient(180deg, transparent 34%, rgba(130, 30, 70, .85) 100%)",
-  },
-  {
-    name: "Turma do Limoeiro",
+    name: "Minecraft",
     category: "Infantil unissex",
-    image: "https://images.unsplash.com/photo-1531983412531-1f49a365ffed?auto=format&fit=crop&w=900&q=85",
-    tint: "linear-gradient(180deg, transparent 34%, rgba(72, 42, 35, .85) 100%)",
-  },
-  {
-    name: "Glamour Pink",
-    category: "Festas infantis",
-    image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=900&q=85",
-    tint: "linear-gradient(180deg, transparent 34%, rgba(106, 22, 84, .84) 100%)",
-  },
-  {
-    name: "Rapunzel",
-    category: "Festas temáticas",
-    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=85",
-    tint: "linear-gradient(180deg, transparent 34%, rgba(77, 40, 87, .84) 100%)",
+    image: "/manus-storage/tema-minecraft_a5b890a9.jpg",
+    tint: "linear-gradient(180deg, transparent 34%, rgba(23, 57, 55, .87) 100%)",
   },
 ];
 
@@ -139,7 +121,7 @@ export default function Home() {
       <section className="hero" id="inicio" aria-labelledby="hero-heading">
         <div className="hero-image" aria-hidden="true" />
         <div className="hero-content">
-          <BrandLockup compact />
+          <img className="hero-logo-art" src="/manus-storage/logo-jpm-lovable_2d35525f.jpeg" alt="Logotipo Jacque Pegue e Monte" />
           <p className="hero-kicker">Festas e locações em Goianésia — GO</p>
           <h1 id="hero-heading">A sua celebração começa com <em>um tema especial.</em></h1>
           <p className="hero-subtitle">Kits de decoração práticos para você retirar, montar e transformar um encontro em memória boa.</p>
