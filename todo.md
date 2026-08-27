@@ -99,6 +99,11 @@
 
 - [x] Aplicar a nova imagem de marca escolhida para o cabeçalho da página inicial.
 
+## Marca nas páginas internas
+
+- [x] Revisar a nova imagem de marca no cabeçalho das páginas internas.
+- [x] Validar a renderização em uma página de tema e registrar a versão publicada.
+
 ## Links das capas de temas
 
 - [x] Conferir os destinos gerados para as capas da prévia de temas.
