@@ -109,3 +109,9 @@
 - [x] Conferir os destinos gerados para as capas da prévia de temas.
 - [x] Corrigir a navegação para as páginas individuais de cada tema.
 - [x] Validar os links de capa em desktop e celular.
+
+## Botões das sugestões de tema
+
+- [x] Identificar os destinos atuais dos botões “Ver este tema”.
+- [x] Direcionar cada botão à página individual correspondente.
+- [x] Validar a navegação dos botões em uma página de tema.
