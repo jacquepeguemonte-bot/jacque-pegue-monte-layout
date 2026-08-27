@@ -66,7 +66,7 @@ const FAQ_ITEMS = [
 function BrandLockup({ compact = false }: { compact?: boolean }) {
   return (
     <a className={`brand-lockup${compact ? " brand-lockup--compact" : ""}`} href="#inicio" aria-label="Jacque Pegue e Monte — início">
-      <img src="/manus-storage/jacque-monogram_324287db.png" alt="Símbolo Jacque Pegue e Monte" />
+      <img src="https://lh3.googleusercontent.com/a-/ALV-UjV7qig-kmUwLvTwpBPFbRz_esDD-LUSO7TA0qlxRVrzZOCaTL9h=w1521" alt="Símbolo Jacque Pegue e Monte" />
       <span>
         <strong>Jacque</strong>
         <small>Pegue e Monte</small>

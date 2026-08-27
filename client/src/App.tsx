@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
+import { useEffect, useState } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -33,6 +34,36 @@ function Router() {
   );
 }
 
+/** Direção visual: celebração editorial suave — uma abertura curta apresenta a marca sem atrasar o acesso ao catálogo. */
+function InitialLoader() {
+  const [visible, setVisible] = useState(true);
+  const [leaving, setLeaving] = useState(false);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const leaveTimer = window.setTimeout(() => setLeaving(true), reducedMotion ? 30 : 760);
+    const hideTimer = window.setTimeout(() => setVisible(false), reducedMotion ? 50 : 1180);
+
+    return () => {
+      window.clearTimeout(leaveTimer);
+      window.clearTimeout(hideTimer);
+    };
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <div className={`initial-loader${leaving ? " initial-loader--leaving" : ""}`} aria-live="polite" aria-label="Carregando o site Jacque Pegue e Monte">
+      <div className="initial-loader__brand">
+        <img src="/manus-storage/logo-jpm-lovable_2d35525f.jpeg" alt="" />
+        <p>Jacque <em>Pegue &amp; Monte</em></p>
+      </div>
+      <div className="initial-loader__bar" aria-hidden="true"><span /></div>
+      <span className="initial-loader__label">Preparando sua celebração</span>
+    </div>
+  );
+}
+
 // NOTE: About Theme
 // - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
 //   to keep consistent foreground/background color across components
@@ -47,6 +78,7 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
+          <InitialLoader />
           <Router />
         </TooltipProvider>
       </ThemeProvider>

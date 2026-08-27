@@ -87,3 +87,14 @@
 - [x] Reposicionar ou remover o quadro branco que obstrui a localização.
 - [x] Definir a logomarca do projeto como favicon.
 - [x] Validar a composição de contato em desktop e celular.
+
+## Endereço e loading inicial
+
+- [ ] Confirmar o endereço publicado atual e orientar a troca do prefixo para jacquepeguemonte.
+- [x] Criar um loading inicial suave com a identidade da marca.
+- [x] Respeitar preferência de movimento reduzido e impedir bloqueio da navegação.
+- [x] Validar a abertura em desktop e celular.
+
+## Marca no cabeçalho
+
+- [x] Aplicar a nova imagem de marca escolhida para o cabeçalho da página inicial.
