@@ -115,3 +115,13 @@
 - [x] Identificar os destinos atuais dos botões “Ver este tema”.
 - [x] Direcionar cada botão à página individual correspondente.
 - [x] Validar a navegação dos botões em uma página de tema.
+
+## Destaques administráveis e estratégia de páginas
+
+- [x] Analisar a arquitetura de páginas de tema e os critérios de SEO relevantes.
+- [x] Definir quantas páginas individuais de tema fazem sentido para o acervo atual.
+- [x] Preparar uma área administrativa protegida para selecionar os temas em destaque.
+- [x] Direcionar temas sem página individual ao catálogo oficial do WhatsApp.
+- [x] Aplicar os destaques e as páginas definidas, mantendo a home orientada à conversão.
+- [x] Validar os fluxos público e administrativo em desktop e celular.
+- [x] Realizar o primeiro salvamento de destaques com a conta proprietária após o login na área administrativa.

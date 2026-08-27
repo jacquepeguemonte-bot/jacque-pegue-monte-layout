@@ -3,7 +3,7 @@
  * atmosfera pastel e rosa pitanga para conversão. A referência inspira a composição,
  * mas esta página usa conteúdo e ativos próprios de Jacque Pegue e Monte.
  */
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ArrowUpRight,
   Check,
@@ -23,7 +23,8 @@ import {
 } from "lucide-react";
 import { CATALOG_THEMES } from "@/data/catalogThemes";
 import { PageMeta } from "@/components/PageMeta";
-import { getThemePath, WHATSAPP_CATALOG_URL } from "@/lib/business";
+import { trpc } from "@/lib/trpc";
+import { DEFAULT_FEATURED_THEME_SLUGS, getThemeDestination, isThemePageAvailable, slugify, WHATSAPP_CATALOG_URL } from "@/lib/business";
 
 const WHATSAPP = "https://wa.me/5562981695886?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20kits%20da%20Jacque%20Pegue%20e%20Monte!";
 
@@ -36,7 +37,7 @@ const NAV_ITEMS = [
   { label: "Contato", href: "#contato" },
 ];
 
-const HOME_THEME_PREVIEW = CATALOG_THEMES.slice(0, 3);
+const HOME_THEME_PREVIEW = CATALOG_THEMES.filter((theme) => DEFAULT_FEATURED_THEME_SLUGS.includes(slugify(theme.name) as (typeof DEFAULT_FEATURED_THEME_SLUGS)[number])).slice(0, 3);
 const CATALOG_HERO_THEME = CATALOG_THEMES[3] ?? CATALOG_THEMES[0];
 
 const STEPS = [
@@ -82,6 +83,11 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
+  const highlightsQuery = trpc.themeHighlights.list.useQuery(undefined, { staleTime: 60_000, refetchOnWindowFocus: false });
+  const homeThemePreview = useMemo(() => {
+    const highlighted = (highlightsQuery.data ?? []).map((highlight) => CATALOG_THEMES.find((theme) => slugify(theme.name) === highlight.themeSlug)).filter((theme): theme is (typeof CATALOG_THEMES)[number] => Boolean(theme));
+    return (highlighted.length > 0 ? highlighted : HOME_THEME_PREVIEW).slice(0, 3);
+  }, [highlightsQuery.data]);
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -155,8 +161,8 @@ export default function Home() {
       </section>
 
       <section className="home-theme-preview" aria-labelledby="inspiracao-heading">
-        <div className="section-intro"><Eyebrow>Um gostinho do acervo</Eyebrow><h2 id="inspiracao-heading">Páginas para se inspirar<br /><em>antes de escolher.</em></h2><p>Alguns temas têm páginas próprias para você conhecer a proposta e chegar ao catálogo com mais clareza.</p></div>
-        <div className="home-theme-preview__grid">{HOME_THEME_PREVIEW.map((theme) => <a key={theme.name} className="home-theme-preview__card" href={getThemePath(theme.name)}><img src={theme.image} alt={`Decoração ${theme.name} Pegue & Monte em Goianésia – GO`} loading="lazy" /><span><small>{theme.category}</small><strong>{theme.name}</strong><ArrowUpRight size={17} /></span></a>)}</div>
+        <div className="section-intro"><Eyebrow>Um gostinho do acervo</Eyebrow><h2 id="inspiracao-heading">Páginas para se inspirar<br /><em>antes de escolher.</em></h2><p>Os destaques são escolhidos pela Jacque. Temas com página própria ajudam na inspiração; os demais levam você ao catálogo atualizado no WhatsApp.</p></div>
+        <div className="home-theme-preview__grid">{homeThemePreview.map((theme) => { const hasPage = isThemePageAvailable(theme.name); return <a key={theme.name} className="home-theme-preview__card" href={getThemeDestination(theme.name)} target={hasPage ? undefined : "_blank"} rel={hasPage ? undefined : "noreferrer"}><img src={theme.image} alt={`Decoração ${theme.name} Pegue & Monte em Goianésia – GO`} loading="lazy" /><span><small>{theme.category}{hasPage ? "" : " · Catálogo"}</small><strong>{theme.name}</strong><ArrowUpRight size={17} /></span></a>; })}</div>
         <div className="home-theme-preview__actions"><a className="text-link" href="/festa-infantil-goianesia">Conheça as páginas de tema <ArrowUpRight size={17} /></a><a className="text-link" href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Abrir todos os temas <ArrowUpRight size={17} /></a></div>
       </section>
 

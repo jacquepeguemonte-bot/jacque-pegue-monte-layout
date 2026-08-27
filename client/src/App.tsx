@@ -2,17 +2,18 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
 import { useEffect, useState } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import { AboutPage, BlogIndexPage, ContactPage, ServicePage, ThemeDetailPage } from "./pages/SeoPages";
+import { AdminThemesPage } from "./pages/AdminThemesPage";
 import { CATALOG_THEMES } from "./data/catalogThemes";
-import { slugify } from "./lib/business";
-
+import { SEO_THEME_SLUGS, slugify, WHATSAPP_CATALOG_URL } from "./lib/business";
 
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
@@ -23,15 +24,30 @@ function Router() {
       <Route path={"/sobre"} component={AboutPage} />
       <Route path={"/contato"} component={ContactPage} />
       <Route path={"/blog"} component={BlogIndexPage} />
-      {CATALOG_THEMES.map((theme) => {
+      <Route path={"/admin/temas"} component={AdminThemesPage} />
+      {CATALOG_THEMES.filter((theme) => SEO_THEME_SLUGS.includes(slugify(theme.name) as (typeof SEO_THEME_SLUGS)[number])).map((theme) => {
         const themeSlug = slugify(theme.name);
         return <Route key={themeSlug} path={`/decoracao-${themeSlug}-goianesia`} component={() => <ThemeDetailPage themeSlug={themeSlug} />} />;
       })}
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
-      <Route component={NotFound} />
+      <Route component={ThemeCatalogRedirect} />
     </Switch>
   );
+}
+
+/** URLs de temas sem página editorial levam o visitante ao catálogo, onde a disponibilidade é confirmada pela equipe. */
+function ThemeCatalogRedirect() {
+  const [location] = useLocation();
+  const isThemePath = location.startsWith("/decoracao-");
+
+  useEffect(() => {
+    if (isThemePath) window.location.replace(WHATSAPP_CATALOG_URL);
+  }, [isThemePath]);
+
+  if (!isThemePath) return <NotFound />;
+
+  return <main className="grid min-h-screen place-items-center bg-[#fffaf8] px-6 text-center text-[#5d4e54]"><p className="text-sm font-semibold">Abrindo o catálogo de temas no WhatsApp...</p></main>;
 }
 
 /** Direção visual: celebração editorial suave — uma abertura curta apresenta a marca sem atrasar o acesso ao catálogo. */

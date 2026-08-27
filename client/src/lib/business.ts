@@ -17,6 +17,7 @@ export const WHATSAPP_URL = "https://wa.me/5562981695886?text=Ol%C3%A1%2C%20quer
 export const WHATSAPP_CATALOG_URL = "https://wa.me/c/556281695886";
 
 export const PRIORITY_THEME_ROUTES = [
+  { slug: "fazendinha", label: "Fazendinha" },
   { slug: "minecraft", label: "Minecraft" },
   { slug: "barbie", label: "Barbie" },
   { slug: "patrulha-canina", label: "Patrulha Canina" },
@@ -27,7 +28,27 @@ export const PRIORITY_THEME_ROUTES = [
   { slug: "futebol", label: "Futebol" },
   { slug: "lilo-e-stitch", label: "Lilo e Stitch" },
   { slug: "princesas", label: "Princesas" },
+  { slug: "cha-revelacao", label: "Chá Revelação" },
+  { slug: "jardim-encantado", label: "Jardim Encantado" },
 ] as const;
+
+/** Temas que receberam uma página editorial própria, com foto real e relevância para busca local. */
+export const SEO_THEME_SLUGS = [
+  "fazendinha",
+  "patrulha-canina",
+  "minecraft",
+  "barbie",
+  "princesas",
+  "homem-aranha",
+  "hot-wheels",
+  "sonic",
+  "lilo-e-stitch",
+  "futebol",
+  "cha-revelacao",
+  "jardim-encantado",
+] as const;
+
+export const DEFAULT_FEATURED_THEME_SLUGS = SEO_THEME_SLUGS;
 
 export const slugify = (value: string) => value
   .normalize("NFD")
@@ -37,3 +58,7 @@ export const slugify = (value: string) => value
   .replace(/^-+|-+$/g, "");
 
 export const getThemePath = (themeName: string) => `/decoracao-${slugify(themeName)}-goianesia`;
+
+export const isThemePageAvailable = (themeName: string) => SEO_THEME_SLUGS.includes(slugify(themeName) as (typeof SEO_THEME_SLUGS)[number]);
+
+export const getThemeDestination = (themeName: string) => isThemePageAvailable(themeName) ? getThemePath(themeName) : WHATSAPP_CATALOG_URL;
