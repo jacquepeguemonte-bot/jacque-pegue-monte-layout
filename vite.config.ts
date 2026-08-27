@@ -204,8 +204,10 @@ function vitePluginStorageProxy(): Plugin {
 }
 
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
+const deploymentBase = process.env.VITE_BASE_PATH ?? "/";
 
 export default defineConfig({
+  base: deploymentBase,
   plugins,
   resolve: {
     alias: {

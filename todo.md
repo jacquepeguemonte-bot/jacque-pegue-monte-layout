@@ -74,3 +74,9 @@
 - [x] Trocar a vitrine extensa de temas por uma prévia editorial com links para páginas específicas.
 - [x] Reforçar informações de confiança, processo, localização e contato antes do CTA final.
 - [x] Validar a nova jornada de conversão em desktop e celular.
+
+## Publicação via GitHub
+
+- [x] Definir a estratégia recomendada de repositório e hospedagem.
+- [x] Preparar a configuração de GitHub Pages compatível com as rotas públicas do site.
+- [x] Criar o roteiro de envio, publicação e atualização futura do projeto.
