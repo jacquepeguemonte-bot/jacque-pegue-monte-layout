@@ -4,7 +4,7 @@
  */
 import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { Link } from "wouter";
-import { BUSINESS, WHATSAPP_URL } from "@/lib/business";
+import { BUSINESS, WHATSAPP_CATALOG_URL } from "@/lib/business";
 
 type PublicPageShellProps = {
   children: React.ReactNode;
@@ -24,13 +24,13 @@ export function PublicPageShell({ children }: PublicPageShellProps) {
           <Link href="/aluguel-decoracao-goianesia">Aluguel</Link>
           <Link href="/contato">Contato</Link>
         </nav>
-        <a className="seo-header-cta" href={WHATSAPP_URL} target="_blank" rel="noreferrer">Consultar disponibilidade <ArrowUpRight size={15} /></a>
+        <a className="seo-header-cta" href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Abrir catálogo <ArrowUpRight size={15} /></a>
       </header>
       {children}
       <footer className="seo-footer">
         <div><p className="seo-footer__brand">Jacque <em>Pegue & Monte</em></p><p>{BUSINESS.description}</p></div>
-        <div className="seo-footer__links"><Link href="/sobre">Sobre</Link><Link href="/contato">Contato</Link><Link href="/blog">Conteúdos</Link><Link href="/#temas">Ver temas</Link><a href={BUSINESS.instagram} target="_blank" rel="noreferrer">Instagram</a></div>
-        <a className="seo-footer__whatsapp" href={WHATSAPP_URL} target="_blank" rel="noreferrer"><MessageCircle size={18} /> Falar pelo WhatsApp</a>
+        <div className="seo-footer__links"><Link href="/sobre">Sobre</Link><Link href="/contato">Contato</Link><Link href="/blog">Conteúdos</Link><a href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Ver catálogo</a><a href={BUSINESS.instagram} target="_blank" rel="noreferrer">Instagram</a></div>
+        <a className="seo-footer__whatsapp" href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer"><MessageCircle size={18} /> Abrir catálogo</a>
       </footer>
     </div>
   );

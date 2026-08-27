@@ -14,6 +14,7 @@ export const BUSINESS = {
 } as const;
 
 export const WHATSAPP_URL = "https://wa.me/5562981695886?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20kits%20da%20Jacque%20Pegue%20e%20Monte!";
+export const WHATSAPP_CATALOG_URL = "https://wa.me/c/556281695886";
 
 export const PRIORITY_THEME_ROUTES = [
   { slug: "minecraft", label: "Minecraft" },

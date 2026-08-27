@@ -42,3 +42,35 @@
 - [x] Adicionar indicadores de progresso e uma navegação mais expressiva.
 - [x] Aplicar movimento suave e estados de foco aos cartões visíveis.
 - [x] Validar o arraste, as setas, o teclado e a experiência em celular.
+
+## Exemplo independente de carrossel
+
+- [x] Criar a estrutura HTML do carrossel com controles acessíveis.
+- [x] Adicionar CSS responsivo e transições suaves.
+- [x] Implementar looping infinito e navegação por setas em JavaScript.
+- [x] Verificar o exemplo em desktop e celular.
+
+## Integração do carrossel em Lovable e Base44
+
+- [x] Confirmar a estrutura pública e os pontos de inserção das duas landing pages.
+- [x] Preparar versões do carrossel compatíveis com Lovable e Base44.
+- [x] Relacionar a integração aos temas e imagens atuais do catálogo.
+- [x] Gerar e validar uma prévia visual do carrossel integrado.
+- [x] Documentar os passos de aplicação em cada plataforma.
+
+## Jornada de conversão e Google Business Profile
+
+- [ ] Definir a página inicial como apresentação e encaminhamento ao catálogo do WhatsApp.
+- [ ] Selecionar páginas temáticas prioritárias e reduzir a vitrine da página inicial.
+- [ ] Verificar requisitos técnicos, conexão e autorização para Google Business Profile.
+- [ ] Preparar uma integração segura para avaliações reais e atualização programada de temas.
+- [ ] Exibir localização com mapa e link de rotas, usando o endereço comercial confirmado.
+- [ ] Validar CTAs, páginas temáticas, avaliações reais e comportamento responsivo.
+
+## Reestruturação da página inicial
+
+- [x] Mapear os blocos atuais da home e definir quais serão preservados ou reduzidos.
+- [x] Reorientar os CTAs principais para o catálogo do WhatsApp.
+- [x] Trocar a vitrine extensa de temas por uma prévia editorial com links para páginas específicas.
+- [x] Reforçar informações de confiança, processo, localização e contato antes do CTA final.
+- [x] Validar a nova jornada de conversão em desktop e celular.

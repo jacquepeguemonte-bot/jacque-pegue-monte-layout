@@ -1,3 +1,4 @@
+/** Direção visual: celebração editorial suave — rotas de temas aprofundam a descoberta e preservam a home como um caminho curto até o catálogo. */
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
@@ -6,6 +7,8 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import { AboutPage, BlogIndexPage, ContactPage, ServicePage, ThemeDetailPage } from "./pages/SeoPages";
+import { CATALOG_THEMES } from "./data/catalogThemes";
+import { slugify } from "./lib/business";
 
 
 function Router() {
@@ -19,16 +22,10 @@ function Router() {
       <Route path={"/sobre"} component={AboutPage} />
       <Route path={"/contato"} component={ContactPage} />
       <Route path={"/blog"} component={BlogIndexPage} />
-      <Route path={"/decoracao-minecraft-goianesia"} component={() => <ThemeDetailPage themeSlug="minecraft" />} />
-      <Route path={"/decoracao-barbie-goianesia"} component={() => <ThemeDetailPage themeSlug="barbie" />} />
-      <Route path={"/decoracao-patrulha-canina-goianesia"} component={() => <ThemeDetailPage themeSlug="patrulha-canina" />} />
-      <Route path={"/decoracao-homem-aranha-goianesia"} component={() => <ThemeDetailPage themeSlug="homem-aranha" />} />
-      <Route path={"/decoracao-hot-wheels-goianesia"} component={() => <ThemeDetailPage themeSlug="hot-wheels" />} />
-      <Route path={"/decoracao-fazendinha-goianesia"} component={() => <ThemeDetailPage themeSlug="fazendinha" />} />
-      <Route path={"/decoracao-sonic-goianesia"} component={() => <ThemeDetailPage themeSlug="sonic" />} />
-      <Route path={"/decoracao-futebol-goianesia"} component={() => <ThemeDetailPage themeSlug="futebol" />} />
-      <Route path={"/decoracao-lilo-e-stitch-goianesia"} component={() => <ThemeDetailPage themeSlug="lilo-e-stitch" />} />
-      <Route path={"/decoracao-princesas-goianesia"} component={() => <ThemeDetailPage themeSlug="princesas" />} />
+      {CATALOG_THEMES.map((theme) => {
+        const themeSlug = slugify(theme.name);
+        return <Route key={themeSlug} path={`/decoracao-${themeSlug}-goianesia`} component={() => <ThemeDetailPage themeSlug={themeSlug} />} />;
+      })}
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

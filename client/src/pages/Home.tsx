@@ -3,7 +3,7 @@
  * atmosfera pastel e rosa pitanga para conversão. A referência inspira a composição,
  * mas esta página usa conteúdo e ativos próprios de Jacque Pegue e Monte.
  */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   ArrowUpRight,
   Check,
@@ -21,34 +21,23 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import { CATALOG_CATEGORIES, CATALOG_THEMES } from "@/data/catalogThemes";
+import { CATALOG_THEMES } from "@/data/catalogThemes";
 import { PageMeta } from "@/components/PageMeta";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
+import { getThemePath, WHATSAPP_CATALOG_URL } from "@/lib/business";
 
 const WHATSAPP = "https://wa.me/5562981695886?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20kits%20da%20Jacque%20Pegue%20e%20Monte!";
 
 const NAV_ITEMS = [
   { label: "Início", href: "#inicio" },
   { label: "Sobre nós", href: "#sobre" },
-  { label: "Temas", href: "#temas" },
+  { label: "Catálogo", href: "#catalogo" },
   { label: "Como funciona", href: "#como-funciona" },
   { label: "Diferenciais", href: "#diferenciais" },
   { label: "Contato", href: "#contato" },
 ];
 
-const CATEGORY_TINTS = {
-  Infantil: "linear-gradient(180deg, transparent 31%, rgba(75, 35, 61, .86) 100%)",
-  Temáticos: "linear-gradient(180deg, transparent 31%, rgba(68, 59, 31, .86) 100%)",
-  Esportes: "linear-gradient(180deg, transparent 31%, rgba(21, 54, 64, .88) 100%)",
-  Celebrações: "linear-gradient(180deg, transparent 31%, rgba(104, 45, 61, .87) 100%)",
-} as const;
+const HOME_THEME_PREVIEW = CATALOG_THEMES.slice(0, 3);
+const CATALOG_HERO_THEME = CATALOG_THEMES[3] ?? CATALOG_THEMES[0];
 
 const STEPS = [
   ["01", "Escolha seu tema", "Navegue pelo acervo, encontre o kit que combina com sua celebração e fale com a gente."],
@@ -93,34 +82,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
-  const [activeCategory, setActiveCategory] = useState<(typeof CATALOG_CATEGORIES)[number]>("Todos");
-  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
-  const [selectedSnap, setSelectedSnap] = useState(0);
-  const [snapCount, setSnapCount] = useState(1);
-
   const closeMenu = () => setMenuOpen(false);
-  const visibleThemes = activeCategory === "Todos" ? CATALOG_THEMES : CATALOG_THEMES.filter((theme) => theme.category === activeCategory);
-
-  useEffect(() => {
-    carouselApi?.scrollTo(0, true);
-    setSelectedSnap(0);
-  }, [activeCategory, carouselApi]);
-
-  useEffect(() => {
-    if (!carouselApi) return;
-    const syncCarouselState = () => {
-      setSelectedSnap(carouselApi.selectedScrollSnap());
-      setSnapCount(Math.max(carouselApi.scrollSnapList().length, 1));
-    };
-
-    syncCarouselState();
-    carouselApi.on("select", syncCarouselState);
-    carouselApi.on("reInit", syncCarouselState);
-    return () => {
-      carouselApi.off("select", syncCarouselState);
-      carouselApi.off("reInit", syncCarouselState);
-    };
-  }, [carouselApi]);
 
   return (
     <main className="site-shell">
@@ -153,7 +115,7 @@ export default function Home() {
           <h1 id="hero-heading">Kits de decoração para festas <em>em Goianésia – GO.</em></h1>
           <p className="hero-subtitle">Alugue sua decoração, retire, monte e comemore. Encontre kits para festas infantis, aniversários, chá revelação, chá de bebê e outras comemorações.</p>
           <div className="hero-actions">
-            <a className="button button--primary" href="#temas">Ver temas disponíveis <ArrowUpRight size={18} /></a>
+          <a className="button button--primary" href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Abrir catálogo completo <ArrowUpRight size={18} /></a>
             <a className="button button--ghost" href="#como-funciona">Como funciona <ChevronDown size={18} /></a>
           </div>
         </div>
@@ -177,47 +139,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="catalog-section" id="temas" aria-labelledby="temas-heading">
-        <div className="catalog-mist" aria-hidden="true" />
-        <div className="section-intro section-intro--center">
-          <Eyebrow>Acervo Jacque</Eyebrow>
-          <h2 id="temas-heading">Temas para virar<br /><em>o cenário da sua história.</em></h2>
-          <p>Explore {CATALOG_THEMES.length} temas para festas infantis, comemorações em família e encontros que pedem um toque só seu.</p>
+      <section className="catalog-gateway" id="catalogo" aria-labelledby="catalogo-heading">
+        <div className="catalog-gateway__art">
+          {CATALOG_HERO_THEME && <img src={CATALOG_HERO_THEME.image} alt={`Decoração ${CATALOG_HERO_THEME.name} do acervo Jacque Pegue e Monte`} />}
+          <span>Acervo com {CATALOG_THEMES.length} temas</span>
         </div>
-        <div className="catalog-toolbar" aria-label="Filtros do catálogo">
-          <p><strong>{visibleThemes.length}</strong> {visibleThemes.length === 1 ? "tema encontrado" : "temas encontrados"}</p>
-          <div className="catalog-filters" role="group" aria-label="Filtrar temas por categoria">
-            {CATALOG_CATEGORIES.map((category) => <button className={`filter-pill${activeCategory === category ? " filter-pill--active" : ""}`} key={category} type="button" onClick={() => setActiveCategory(category)} aria-pressed={activeCategory === category}>{category}</button>)}
-          </div>
+        <div className="catalog-gateway__copy">
+          <Eyebrow>Escolha sem pressa</Eyebrow>
+          <h2 id="catalogo-heading">O catálogo completo<br />já está no <em>WhatsApp.</em></h2>
+          <p>Confira todos os temas, veja as fotos do acervo e converse com a equipe sobre a sua data em um único lugar.</p>
+          <ol className="catalog-gateway__steps"><li><span>01</span>Abra o catálogo completo.</li><li><span>02</span>Encontre a inspiração para a sua festa.</li><li><span>03</span>Chame a equipe para confirmar a data.</li></ol>
+          <a className="button button--primary" href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Ver catálogo no WhatsApp <ArrowUpRight size={18} /></a>
+          <p className="catalog-gateway__note">Você será direcionada para o catálogo oficial da Jacque Pegue e Monte.</p>
         </div>
-        <div className="theme-carousel-shell">
-          <Carousel setApi={setCarouselApi} opts={{ align: "start", containScroll: "trimSnaps", dragFree: true, duration: 28 }} className="theme-carousel" aria-label="Carrossel de temas">
-            <CarouselContent className="theme-carousel__track">
-              {visibleThemes.map((theme, index) => (
-                <CarouselItem className="theme-carousel__slide" key={theme.name} data-current={index === selectedSnap}>
-                  <article className="theme-card" style={{ "--theme-tint": CATEGORY_TINTS[theme.category] } as React.CSSProperties}>
-                    <img className="theme-card__image" src={theme.image} alt={`Decoração ${theme.name} Pegue & Monte em Goianésia – GO`} loading="lazy" />
-                    <div className="theme-card__top"><span>{String(index + 1).padStart(2, "0")}</span><span>{theme.category}</span></div>
-                    <div className="theme-card__copy"><h3>{theme.name}</h3><a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label={`Consultar tema ${theme.name}`}>Consultar tema <ArrowUpRight size={16} /></a></div>
-                  </article>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="theme-carousel__navigation" aria-label="Status e controles do carrossel">
-              <div className="theme-carousel__status" aria-live="polite">
-                <span>Deslize pelo acervo</span>
-                <strong>{String(selectedSnap + 1).padStart(2, "0")}<i>/</i>{String(snapCount).padStart(2, "0")}</strong>
-              </div>
-              <div className="theme-carousel__progress" aria-hidden="true"><span style={{ "--carousel-progress": String((selectedSnap + 1) / snapCount) } as React.CSSProperties} /></div>
-              <div className="theme-carousel__controls">
-                <CarouselPrevious className="theme-carousel__button" aria-label="Tema anterior" />
-                <CarouselNext className="theme-carousel__button" aria-label="Próximo tema" />
-              </div>
-            </div>
-          </Carousel>
-          <p className="carousel-guide">Arraste os cartões, navegue pelas setas ou use as teclas ← e → para descobrir cada tema.</p>
-        </div>
-        <div className="catalog-action"><a className="button button--primary" href={WHATSAPP} target="_blank" rel="noreferrer">Falar sobre um tema <ArrowUpRight size={18} /></a></div>
+      </section>
+
+      <section className="home-theme-preview" aria-labelledby="inspiracao-heading">
+        <div className="section-intro"><Eyebrow>Um gostinho do acervo</Eyebrow><h2 id="inspiracao-heading">Páginas para se inspirar<br /><em>antes de escolher.</em></h2><p>Alguns temas têm páginas próprias para você conhecer a proposta e chegar ao catálogo com mais clareza.</p></div>
+        <div className="home-theme-preview__grid">{HOME_THEME_PREVIEW.map((theme) => <a key={theme.name} className="home-theme-preview__card" href={getThemePath(theme.name)}><img src={theme.image} alt={`Decoração ${theme.name} Pegue & Monte em Goianésia – GO`} loading="lazy" /><span><small>{theme.category}</small><strong>{theme.name}</strong><ArrowUpRight size={17} /></span></a>)}</div>
+        <div className="home-theme-preview__actions"><a className="text-link" href="/festa-infantil-goianesia">Conheça as páginas de tema <ArrowUpRight size={17} /></a><a className="text-link" href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Abrir todos os temas <ArrowUpRight size={17} /></a></div>
       </section>
 
       <section className="steps-section" id="como-funciona" aria-labelledby="como-heading">
@@ -246,7 +186,7 @@ export default function Home() {
       <section className="cta-strip" aria-label="Chamada para orçamento">
         <div><PartyPopper size={29} /><p className="eyebrow eyebrow--light">Agenda aberta</p></div>
         <h2>Já imaginou o tema<br />da sua próxima festa?</h2>
-        <a className="button button--light" href={WHATSAPP} target="_blank" rel="noreferrer">Falar com a Jacque <MessageCircle size={18} /></a>
+        <a className="button button--light" href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Abrir catálogo <MessageCircle size={18} /></a>
       </section>
 
       <section className="faq-contact" id="contato">
@@ -279,7 +219,7 @@ export default function Home() {
         <div className="footer-main">
           <div className="footer-brand"><BrandLockup /><p>Decoração para celebrar o que importa, com praticidade para você viver cada momento.</p></div>
           <div className="footer-links"><p>Navegue</p>{NAV_ITEMS.slice(1).map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}</div>
-          <div className="footer-links"><p>Atendimento</p><a href={WHATSAPP} target="_blank" rel="noreferrer">WhatsApp</a><a href="https://www.instagram.com/jacque_pegue_monte" target="_blank" rel="noreferrer">Instagram</a><a href="#temas">Consultar temas</a></div>
+          <div className="footer-links"><p>Atendimento</p><a href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Catálogo no WhatsApp</a><a href="https://www.instagram.com/jacque_pegue_monte" target="_blank" rel="noreferrer">Instagram</a><a href="#catalogo">Como consultar</a></div>
         </div>
         <div className="footer-bottom"><span>© 2026 Jacque Pegue e Monte. Goianésia — GO.</span><span>Feito para celebrar com leveza.</span></div>
       </footer>

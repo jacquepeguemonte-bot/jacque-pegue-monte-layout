@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrossel Dinâmico de Catálogo</title>
+    <style>
+      :root {
+        --gap: 18px;
+        --accent: #e83d71;
+        --ink: #2b2025;
+        --paper: #fffaf7;
+      }
+
+      * { box-sizing: border-box; }
+      body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 32px 18px; color: var(--ink); font-family: Arial, sans-serif; background: linear-gradient(135deg, #fff4f5, #fffaf7 60%, #eef5f4); }
+      .catalog { width: min(1120px, 100%); }
+      .catalog__eyebrow { margin: 0 0 9px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+      .catalog h1 { margin: 0; font-family: Georgia, serif; font-size: clamp(36px, 5vw, 64px); letter-spacing: -.05em; line-height: .98; }
+      .catalog h1 em { color: var(--accent); font-style: italic; }
+
+      .carousel { margin-top: 34px; }
+      .carousel__viewport { overflow: hidden; touch-action: pan-y; cursor: grab; }
+      .carousel__viewport.is-dragging { cursor: grabbing; }
+      .carousel__track { display: flex; gap: var(--gap); will-change: transform; }
+      .carousel__slide { flex: 0 0 calc((100% - (var(--gap) * 2)) / 3); min-width: 0; }
+      .product-card { position: relative; min-height: 400px; overflow: hidden; display: flex; align-items: flex-end; border: 5px solid rgba(255,255,255,.85); border-radius: 26px; color: #fff; background: #5f4350; box-shadow: 0 15px 34px rgba(89,51,67,.18); transition: transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms ease; }
+      .product-card:hover { transform: translateY(-7px); box-shadow: 0 23px 42px rgba(89,51,67,.23); }
+      .product-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 500ms cubic-bezier(.23,1,.32,1); }
+      .product-card:hover img { transform: scale(1.06); }
+      .product-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(37,22,29,.85)); }
+      .product-card__content { position: relative; z-index: 1; width: 100%; padding: 19px; }
+      .product-card__category { display: inline-flex; padding: 5px 8px; border: 1px solid rgba(255,255,255,.48); border-radius: 999px; font-size: 10px; font-weight: 700; background: rgba(20,10,15,.15); backdrop-filter: blur(5px); }
+      .product-card h2 { margin: 12px 0 0; font-family: Georgia, serif; font-size: 30px; font-weight: 500; line-height: 1; }
+      .product-card a { display: inline-flex; margin-top: 12px; color: #fff; font-size: 12px; font-weight: 700; text-underline-offset: 4px; }
+
+      .carousel__footer { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; margin-top: 20px; }
+      .carousel__counter { display: grid; gap: 2px; }
+      .carousel__counter span { color: #846f78; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+      .carousel__counter strong { font-family: Georgia, serif; font-size: 25px; line-height: 1; }
+      .carousel__counter strong i { color: var(--accent); font-style: normal; }
+      .carousel__progress { height: 5px; overflow: hidden; border-radius: 999px; background: rgba(85,52,63,.13); }
+      .carousel__progress span { display: block; width: 100%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent), #ff9bb9); transform: scaleX(var(--progress, .16)); transform-origin: left; transition: transform 350ms cubic-bezier(.23,1,.32,1); }
+      .carousel__actions { display: flex; gap: 9px; }
+      .carousel__button { width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid rgba(82,49,61,.16); border-radius: 50%; color: var(--accent); background: rgba(255,255,255,.9); font-size: 21px; cursor: pointer; box-shadow: 0 8px 16px rgba(89,51,67,.1); transition: transform 180ms ease, color 180ms ease, background 180ms ease; }
+      .carousel__button:hover { color: #fff; background: var(--accent); transform: translateY(-3px); }
+      .carousel__button:active { transform: scale(.96); }
+      .carousel__button:focus-visible, .product-card a:focus-visible { outline: 3px solid rgba(232,61,113,.35); outline-offset: 3px; }
+      .carousel__hint { margin: 13px 0 0; color: #846f78; font-size: 12px; }
+
+      @media (max-width: 760px) {
+        :root { --gap: 14px; }
+        body { padding: 26px 16px; }
+        .carousel__slide { flex-basis: calc((100% - var(--gap)) / 2); }
+        .product-card { min-height: 320px; border-radius: 21px; }
+        .product-card h2 { font-size: 25px; }
+      }
+
+      @media (max-width: 480px) {
+        .carousel__slide { flex-basis: 84%; }
+        .carousel__footer { grid-template-columns: 1fr auto; gap: 12px; }
+        .carousel__progress { grid-column: 1 / -1; grid-row: 2; }
+        .carousel__hint { max-width: 280px; line-height: 1.5; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .carousel__track, .carousel__progress span, .product-card, .product-card img, .carousel__button { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="catalog">
+      <p class="catalog__eyebrow">Seu catálogo</p>
+      <h1>Temas que viram<br /><em>o cenário da festa.</em></h1>
+
+      <section class="carousel" aria-roledescription="carousel" aria-label="Carrossel de produtos">
+        <div class="carousel__viewport" id="carouselViewport" tabindex="0">
+          <div class="carousel__track" id="carouselTrack">
+            <!-- Troque título, categoria, link e image pelas informações do seu catálogo. -->
+            <article class="carousel__slide"><div class="product-card"><img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=85" alt="Exemplo de tema infantil" /><div class="product-card__content"><span class="product-card__category">Infantil</span><h2>Fazendinha</h2><a href="#consultar">Consultar tema</a></div></div></article>
+            <article class="carousel__slide"><div class="product-card"><img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=900&q=85" alt="Exemplo de tema com balões" /><div class="product-card__content"><span class="product-card__category">Infantil</span><h2>Princesas</h2><a href="#consultar">Consultar tema</a></div></div></article>
+            <article class="carousel__slide"><div class="product-card"><img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=900&q=85" alt="Exemplo de festa colorida" /><div class="product-card__content"><span class="product-card__category">Comemoração</span><h2>Chá revelação</h2><a href="#consultar">Consultar tema</a></div></div></article>
+            <article class="carousel__slide"><div class="product-card"><img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=900&q=85" alt="Exemplo de decoração de aniversário" /><div class="product-card__content"><span class="product-card__category">Infantil</span><h2>Super-heróis</h2><a href="#consultar">Consultar tema</a></div></div></article>
+            <article class="carousel__slide"><div class="product-card"><img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=900&q=85" alt="Exemplo de celebração com decoração" /><div class="product-card__content"><span class="product-card__category">Eventos</span><h2>Aniversário</h2><a href="#consultar">Consultar tema</a></div></div></article>
+          </div>
+        </div>
+
+        <div class="carousel__footer">
+          <div class="carousel__counter" aria-live="polite"><span>Item atual</span><strong id="counter">01 <i>/</i> 05</strong></div>
+          <div class="carousel__progress" aria-hidden="true"><span id="progress"></span></div>
+          <div class="carousel__actions">
+            <button class="carousel__button" id="previous" type="button" aria-label="Produto anterior">←</button>
+            <button class="carousel__button" id="next" type="button" aria-label="Próximo produto">→</button>
+          </div>
+        </div>
+        <p class="carousel__hint">Arraste os cartões, use as setas ou pressione ← e → para navegar.</p>
+      </section>
+    </main>
+
+    <script>
+      const viewport = document.querySelector('#carouselViewport');
+      const track = document.querySelector('#carouselTrack');
+      const previous = document.querySelector('#previous');
+      const next = document.querySelector('#next');
+      const counter = document.querySelector('#counter');
+      const progress = document.querySelector('#progress');
+      const originalSlides = Array.from(track.children);
+      const total = originalSlides.length;
+
+      // Clones nas extremidades tornam a passagem do último para o primeiro item contínua.
+      const firstClone = originalSlides[0].cloneNode(true);
+      const lastClone = originalSlides[total - 1].cloneNode(true);
+      firstClone.setAttribute('aria-hidden', 'true');
+      lastClone.setAttribute('aria-hidden', 'true');
+      track.append(firstClone);
+      track.prepend(lastClone);
+
+      let currentIndex = 1;
+      let isAnimating = false;
+      let autoAdvance;
+      let pointerStart = null;
+
+      const getStepSize = () => {
+        const slide = track.children[0];
+        const gap = Number.parseFloat(getComputedStyle(track).gap) || 0;
+        return slide.getBoundingClientRect().width + gap;
+      };
+
+      const render = (animate = true) => {
+        track.style.transition = animate ? 'transform 520ms cubic-bezier(.23,1,.32,1)' : 'none';
+        track.style.transform = `translateX(${-currentIndex * getStepSize()}px)`;
+        const visibleIndex = ((currentIndex - 1 + total) % total) + 1;
+        counter.innerHTML = `${String(visibleIndex).padStart(2, '0')} <i>/</i> ${String(total).padStart(2, '0')}`;
+        progress.style.setProperty('--progress', String(visibleIndex / total));
+      };
+
+      const move = (direction) => {
+        if (isAnimating) return;
+        isAnimating = true;
+        currentIndex += direction;
+        render();
+      };
+
+      const restartAutoAdvance = () => {
+        window.clearInterval(autoAdvance);
+        autoAdvance = window.setInterval(() => move(1), 4300);
+      };
+
+      track.addEventListener('transitionend', () => {
+        if (currentIndex === total + 1) {
+          currentIndex = 1;
+          render(false);
+        } else if (currentIndex === 0) {
+          currentIndex = total;
+          render(false);
+        }
+        isAnimating = false;
+      });
+
+      next.addEventListener('click', () => { move(1); restartAutoAdvance(); });
+      previous.addEventListener('click', () => { move(-1); restartAutoAdvance(); });
+      viewport.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') { event.preventDefault(); move(1); restartAutoAdvance(); }
+        if (event.key === 'ArrowLeft') { event.preventDefault(); move(-1); restartAutoAdvance(); }
+      });
+
+      viewport.addEventListener('pointerdown', (event) => {
+        pointerStart = event.clientX;
+        viewport.classList.add('is-dragging');
+        window.clearInterval(autoAdvance);
+      });
+      viewport.addEventListener('pointerup', (event) => {
+        if (pointerStart === null) return;
+        const distance = event.clientX - pointerStart;
+        if (Math.abs(distance) > 45) move(distance < 0 ? 1 : -1);
+        pointerStart = null;
+        viewport.classList.remove('is-dragging');
+        restartAutoAdvance();
+      });
+      viewport.addEventListener('pointercancel', () => { pointerStart = null; viewport.classList.remove('is-dragging'); restartAutoAdvance(); });
+      viewport.addEventListener('mouseenter', () => window.clearInterval(autoAdvance));
+      viewport.addEventListener('mouseleave', restartAutoAdvance);
+      viewport.addEventListener('focusin', () => window.clearInterval(autoAdvance));
+      viewport.addEventListener('focusout', restartAutoAdvance);
+      window.addEventListener('resize', () => render(false));
+
+      render(false);
+      restartAutoAdvance();
+    </script>
+  </body>
+</html>
