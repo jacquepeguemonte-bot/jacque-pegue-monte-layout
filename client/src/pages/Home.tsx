@@ -95,13 +95,32 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState(0);
   const [activeCategory, setActiveCategory] = useState<(typeof CATALOG_CATEGORIES)[number]>("Todos");
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [selectedSnap, setSelectedSnap] = useState(0);
+  const [snapCount, setSnapCount] = useState(1);
 
   const closeMenu = () => setMenuOpen(false);
   const visibleThemes = activeCategory === "Todos" ? CATALOG_THEMES : CATALOG_THEMES.filter((theme) => theme.category === activeCategory);
 
   useEffect(() => {
     carouselApi?.scrollTo(0, true);
+    setSelectedSnap(0);
   }, [activeCategory, carouselApi]);
+
+  useEffect(() => {
+    if (!carouselApi) return;
+    const syncCarouselState = () => {
+      setSelectedSnap(carouselApi.selectedScrollSnap());
+      setSnapCount(Math.max(carouselApi.scrollSnapList().length, 1));
+    };
+
+    syncCarouselState();
+    carouselApi.on("select", syncCarouselState);
+    carouselApi.on("reInit", syncCarouselState);
+    return () => {
+      carouselApi.off("select", syncCarouselState);
+      carouselApi.off("reInit", syncCarouselState);
+    };
+  }, [carouselApi]);
 
   return (
     <main className="site-shell">
@@ -172,10 +191,10 @@ export default function Home() {
           </div>
         </div>
         <div className="theme-carousel-shell">
-          <Carousel setApi={setCarouselApi} opts={{ align: "start", containScroll: "trimSnaps" }} className="theme-carousel" aria-label="Carrossel de temas">
+          <Carousel setApi={setCarouselApi} opts={{ align: "start", containScroll: "trimSnaps", dragFree: true, duration: 28 }} className="theme-carousel" aria-label="Carrossel de temas">
             <CarouselContent className="theme-carousel__track">
               {visibleThemes.map((theme, index) => (
-                <CarouselItem className="theme-carousel__slide" key={theme.name}>
+                <CarouselItem className="theme-carousel__slide" key={theme.name} data-current={index === selectedSnap}>
                   <article className="theme-card" style={{ "--theme-tint": CATEGORY_TINTS[theme.category] } as React.CSSProperties}>
                     <img className="theme-card__image" src={theme.image} alt={`Decoração ${theme.name} Pegue & Monte em Goianésia – GO`} loading="lazy" />
                     <div className="theme-card__top"><span>{String(index + 1).padStart(2, "0")}</span><span>{theme.category}</span></div>
@@ -184,12 +203,19 @@ export default function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="theme-carousel__controls" aria-label="Controles do carrossel">
-              <CarouselPrevious className="theme-carousel__button" aria-label="Tema anterior" />
-              <CarouselNext className="theme-carousel__button" aria-label="Próximo tema" />
+            <div className="theme-carousel__navigation" aria-label="Status e controles do carrossel">
+              <div className="theme-carousel__status" aria-live="polite">
+                <span>Deslize pelo acervo</span>
+                <strong>{String(selectedSnap + 1).padStart(2, "0")}<i>/</i>{String(snapCount).padStart(2, "0")}</strong>
+              </div>
+              <div className="theme-carousel__progress" aria-hidden="true"><span style={{ "--carousel-progress": String((selectedSnap + 1) / snapCount) } as React.CSSProperties} /></div>
+              <div className="theme-carousel__controls">
+                <CarouselPrevious className="theme-carousel__button" aria-label="Tema anterior" />
+                <CarouselNext className="theme-carousel__button" aria-label="Próximo tema" />
+              </div>
             </div>
           </Carousel>
-          <p className="carousel-guide">Arraste para explorar todos os temas ou use as setas para avançar.</p>
+          <p className="carousel-guide">Arraste os cartões, navegue pelas setas ou use as teclas ← e → para descobrir cada tema.</p>
         </div>
         <div className="catalog-action"><a className="button button--primary" href={WHATSAPP} target="_blank" rel="noreferrer">Falar sobre um tema <ArrowUpRight size={18} /></a></div>
       </section>

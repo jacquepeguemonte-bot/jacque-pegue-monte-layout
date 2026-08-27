@@ -35,3 +35,10 @@
 - [x] Criar páginas prioritárias de tema sem inventar itens, avaliações ou disponibilidade.
 - [x] Adicionar dados estruturados, links internos e melhorias de acessibilidade aplicáveis.
 - [x] Validar rotas, metadados, links, carrossel e comportamento responsivo.
+
+## Carrossel de temas mais dinâmico
+
+- [x] Avaliar os controles e o estado visual atuais do carrossel.
+- [x] Adicionar indicadores de progresso e uma navegação mais expressiva.
+- [x] Aplicar movimento suave e estados de foco aos cartões visíveis.
+- [x] Validar o arraste, as setas, o teclado e a experiência em celular.

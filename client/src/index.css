@@ -4,6 +4,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "./seo-pages.css";
+@import "./carousel-dynamics.css";
 
 @custom-variant dark (&:is(.dark *));
 
