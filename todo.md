@@ -80,3 +80,10 @@
 - [x] Definir a estratégia recomendada de repositório e hospedagem.
 - [x] Preparar a configuração de GitHub Pages compatível com as rotas públicas do site.
 - [x] Criar o roteiro de envio, publicação e atualização futura do projeto.
+
+## Ajustes de contato e favicon
+
+- [x] Inspecionar o painel de contato e o quadro de localização atual.
+- [x] Reposicionar ou remover o quadro branco que obstrui a localização.
+- [x] Definir a logomarca do projeto como favicon.
+- [x] Validar a composição de contato em desktop e celular.
