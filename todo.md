@@ -26,3 +26,12 @@
 - [x] Remover a exibição de preço dos cartões de tema.
 - [x] Converter a grade de temas em carrossel com controles acessíveis e filtros preservados.
 - [x] Validar a navegação do carrossel em desktop e celular.
+
+## Adequações de SEO e conversão
+
+- [x] Mapear páginas, rotas, metadados e conteúdos existentes que precisam ser preservados.
+- [x] Atualizar título, descrição e conteúdo essencial da página inicial para SEO local.
+- [x] Criar páginas públicas de serviços e institucionais com informações confirmadas.
+- [x] Criar páginas prioritárias de tema sem inventar itens, avaliações ou disponibilidade.
+- [x] Adicionar dados estruturados, links internos e melhorias de acessibilidade aplicáveis.
+- [x] Validar rotas, metadados, links, carrossel e comportamento responsivo.

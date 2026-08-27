@@ -33,3 +33,10 @@ O layout de [Banguelê Festas](https://banguelefestas.com.br/) é a referência 
 ## Regras de fidelidade
 
 Toda decisão de interface deve reforçar a composição celebrativa, arejada e arredondada da referência, sem copiar os seus textos, ativos ou marca. A adaptação preservará os dados, o catálogo e as chamadas existentes no projeto anexado sempre que forem relevantes para a experiência pública.
+
+## Style Decisions
+
+- A navegação em cápsula flutuante é obrigatória em todas as rotas públicas, e não apenas na página inicial.
+- O rosa pitanga é reservado para CTAs, ênfases tipográficas, estados ativos e marcas pontuais; campos amplos usam off-white, blush, pêssego, azul suave ou grafite.
+- Cada página de serviço, contato, institucional ou tema deve conter pelo menos um momento visual guiado por fotografia real do acervo, tratado com moldura suave e atmosfera editorial.
+- O monograma em forma de fita será usado como traço decorativo discreto nos campos de fundo e na navegação, reforçando a assinatura visual sem competir com as fotos.

@@ -22,6 +22,7 @@ import {
   X,
 } from "lucide-react";
 import { CATALOG_CATEGORIES, CATALOG_THEMES } from "@/data/catalogThemes";
+import { PageMeta } from "@/components/PageMeta";
 import {
   Carousel,
   CarouselContent,
@@ -68,6 +69,9 @@ const FAQ_ITEMS = [
   ["As peças cabem em carro de passeio?", "Sim. Os kits são organizados para que as peças sejam transportadas com praticidade. Antes da retirada, orientamos a melhor forma de acomodar tudo."],
   ["Como funciona a retirada e a devolução?", "Combinamos o horário de retirada e o prazo de devolução no momento da reserva. Assim, você aproveita o evento com planejamento e tranquilidade."],
   ["Como garanto a reserva do meu tema?", "Basta chamar no WhatsApp, confirmar a disponibilidade da data e formalizar a reserva com a equipe."],
+  ["Como consulto a disponibilidade?", "Envie a data e o tema que você procura pelo WhatsApp. A equipe confirma o que está disponível para a sua comemoração."],
+  ["Onde retiro a decoração?", "A retirada é combinada com a equipe na R. 25, 328 — Centro, em Goianésia – GO."],
+  ["Vocês fazem a montagem?", "O modelo Pegue & Monte é pensado para você retirar o kit e montar sua decoração. Se precisar alinhar uma necessidade específica, fale com a equipe."],
 ];
 
 function BrandLockup({ compact = false }: { compact?: boolean }) {
@@ -101,6 +105,7 @@ export default function Home() {
 
   return (
     <main className="site-shell">
+      <PageMeta title="Jacque Pegue & Monte | Decoração de Festas em Goianésia – GO" description="Aluguel de kits de decoração para festas em Goianésia – GO. Escolha seu tema, retire, monte e devolva. Festa infantil, aniversário, chá revelação e muito mais. Conheça a Jacque Pegue & Monte." />
       <header className="site-header">
         <div className="header-inner">
           <BrandLockup />
@@ -125,8 +130,9 @@ export default function Home() {
         <div className="hero-content">
           <img className="hero-logo-art" src="/manus-storage/logo-jpm-lovable_2d35525f.jpeg" alt="Logotipo Jacque Pegue e Monte" />
           <p className="hero-kicker">Festas e locações em Goianésia — GO</p>
-          <h1 id="hero-heading">A sua celebração começa com <em>um tema especial.</em></h1>
-          <p className="hero-subtitle">Kits de decoração práticos para você retirar, montar e transformar um encontro em memória boa.</p>
+          <p className="hero-signature">A sua celebração começa com um tema especial.</p>
+          <h1 id="hero-heading">Kits de decoração para festas <em>em Goianésia – GO.</em></h1>
+          <p className="hero-subtitle">Alugue sua decoração, retire, monte e comemore. Encontre kits para festas infantis, aniversários, chá revelação, chá de bebê e outras comemorações.</p>
           <div className="hero-actions">
             <a className="button button--primary" href="#temas">Ver temas disponíveis <ArrowUpRight size={18} /></a>
             <a className="button button--ghost" href="#como-funciona">Como funciona <ChevronDown size={18} /></a>
@@ -145,9 +151,10 @@ export default function Home() {
           <p>Na Jacque Pegue e Monte, acreditamos que montar uma comemoração pode ser simples, afetiva e cheia de estilo. Você encontra o tema, pega as peças com praticidade e cria o cenário para o seu momento.</p>
           <div className="story-metrics">
             <div><strong>+{CATALOG_THEMES.length}</strong><span>temas no acervo</span></div>
-            <div><strong>20 min</strong><span>para montar com calma</span></div>
+            <div><strong>Local</strong><span>atendimento em Goianésia</span></div>
           </div>
           <a className="text-link" href="#como-funciona">Entenda a experiência <ArrowUpRight size={17} /></a>
+          <div className="home-service-links" aria-label="Conheça nossos serviços"><a href="/festa-infantil-goianesia">Festa infantil <ArrowUpRight size={14} /></a><a href="/pegue-e-monte-goianesia">Pegue & Monte <ArrowUpRight size={14} /></a><a href="/aluguel-decoracao-goianesia">Aluguel de decoração <ArrowUpRight size={14} /></a></div>
         </div>
       </section>
 
@@ -169,7 +176,8 @@ export default function Home() {
             <CarouselContent className="theme-carousel__track">
               {visibleThemes.map((theme, index) => (
                 <CarouselItem className="theme-carousel__slide" key={theme.name}>
-                  <article className="theme-card" style={{ "--theme-image": `url(${theme.image})`, "--theme-tint": CATEGORY_TINTS[theme.category] } as React.CSSProperties}>
+                  <article className="theme-card" style={{ "--theme-tint": CATEGORY_TINTS[theme.category] } as React.CSSProperties}>
+                    <img className="theme-card__image" src={theme.image} alt={`Decoração ${theme.name} Pegue & Monte em Goianésia – GO`} loading="lazy" />
                     <div className="theme-card__top"><span>{String(index + 1).padStart(2, "0")}</span><span>{theme.category}</span></div>
                     <div className="theme-card__copy"><h3>{theme.name}</h3><a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label={`Consultar tema ${theme.name}`}>Consultar tema <ArrowUpRight size={16} /></a></div>
                   </article>
@@ -235,7 +243,7 @@ export default function Home() {
           <div className="contact-details">
             <a href="https://www.google.com/maps/search/?api=1&query=R.%2025,%20328,%20Centro,%20Goian%C3%A9sia,%20GO" target="_blank" rel="noreferrer"><MapPin size={19} /><span>R. 25, 328 — Centro<br />Goianésia — GO</span><ArrowUpRight size={16} /></a>
             <a href={WHATSAPP} target="_blank" rel="noreferrer"><Phone size={18} /><span>(62) 98169-5886</span><ArrowUpRight size={16} /></a>
-            <div><Clock3 size={18} /><span>Seg–Sex: 08h às 18h<br />Sábado: retiradas até 13h</span></div>
+            <div><Clock3 size={18} /><span>Horários de retirada<br />confirmados no atendimento</span></div>
           </div>
           <a className="instagram-link" href="https://www.instagram.com/jacque_pegue_monte" target="_blank" rel="noreferrer"><Instagram size={18} /> @jacque_pegue_monte</a>
         </aside>
