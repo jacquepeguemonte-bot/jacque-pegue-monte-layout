@@ -98,3 +98,9 @@
 ## Marca no cabeçalho
 
 - [x] Aplicar a nova imagem de marca escolhida para o cabeçalho da página inicial.
+
+## Links das capas de temas
+
+- [x] Conferir os destinos gerados para as capas da prévia de temas.
+- [x] Corrigir a navegação para as páginas individuais de cada tema.
+- [x] Validar os links de capa em desktop e celular.

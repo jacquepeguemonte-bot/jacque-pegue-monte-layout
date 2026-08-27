@@ -36,4 +36,4 @@ export const slugify = (value: string) => value
   .replace(/[^a-z0-9]+/g, "-")
   .replace(/^-+|-+$/g, "");
 
-export const getThemePath = (slug: string) => `/decoracao-${slug}-goianesia`;
+export const getThemePath = (themeName: string) => `/decoracao-${slugify(themeName)}-goianesia`;
