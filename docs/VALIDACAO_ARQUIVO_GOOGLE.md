@@ -1,0 +1,3 @@
+# Validação do arquivo Google Site Verification
+
+Em 28 de agosto de 2026, o arquivo `googlea94396d3e13de309.html` foi confirmado no preview com o conteúdo exato `google-site-verification: googlea94396d3e13de309.html`. A primeira validação no domínio publicado retornou a página SPA 404, embora o arquivo estivesse presente no build. A investigação confirmou que o upload original tinha permissão 600; a correção aplicada foi ajustar o arquivo em `client/public` para 644, reconstruir o pacote e confirmar que o artefato `dist/public/googlea94396d3e13de309.html` também ficou com permissão 644. É necessário republicar e validar novamente o domínio final.

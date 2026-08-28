@@ -187,3 +187,9 @@
 
 - [ ] Salvar uma nova versão contendo o arquivo HTML na raiz pública.
 - [ ] Validar o arquivo no domínio publicado e confirmar o conteúdo exato.
+
+## Correção de acesso público do arquivo Google
+
+- [x] Ajustar a permissão do arquivo HTML para leitura pública e confirmar o artefato no build.
+- [ ] Republicar a correção de permissão em uma nova versão.
+- [ ] Confirmar novamente o conteúdo no domínio publicado após a republicação.
