@@ -205,3 +205,6 @@
 - [x] Confirmar o domínio público e a URL do sitemap atual.
 - [x] Criar robots.txt na raiz pública com a diretiva do sitemap.
 - [ ] Validar o arquivo no build e no domínio publicado.
+
+- [x] Adicionar rota explícita para servir robots.txt como texto no servidor de produção.
+- [ ] Republicar e confirmar a diretiva Sitemap no domínio público.
