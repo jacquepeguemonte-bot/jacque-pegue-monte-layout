@@ -176,3 +176,14 @@
 - [x] Adicionar teste de renderização da AdminReviewsPage para estados vazio, erro e conectado.
 
 - [x] Impedir que o estado loading mostre simultaneamente o painel de ausência de avaliações.
+
+## Arquivo HTML de verificação
+
+- [x] Inspecionar o arquivo HTML recebido.
+- [x] Publicar o arquivo na raiz pública do site.
+- [x] Validar o acesso ao arquivo pela URL pública e a compilação.
+
+## Validação pública do arquivo de verificação
+
+- [ ] Salvar uma nova versão contendo o arquivo HTML na raiz pública.
+- [ ] Validar o arquivo no domínio publicado e confirmar o conteúdo exato.
