@@ -60,11 +60,11 @@
 
 ## Jornada de conversão e Google Business Profile
 
-- [ ] Definir a página inicial como apresentação e encaminhamento ao catálogo do WhatsApp.
-- [ ] Selecionar páginas temáticas prioritárias e reduzir a vitrine da página inicial.
+- [x] Definir a página inicial como apresentação e encaminhamento ao catálogo do WhatsApp.
+- [x] Selecionar páginas temáticas prioritárias e reduzir a vitrine da página inicial.
 - [ ] Verificar requisitos técnicos, conexão e autorização para Google Business Profile.
 - [ ] Preparar uma integração segura para avaliações reais e atualização programada de temas.
-- [ ] Exibir localização com mapa e link de rotas, usando o endereço comercial confirmado.
+- [x] Exibir localização com mapa e link de rotas, usando o endereço comercial confirmado.
 - [ ] Validar CTAs, páginas temáticas, avaliações reais e comportamento responsivo.
 
 ## Reestruturação da página inicial
@@ -125,3 +125,33 @@
 - [x] Aplicar os destaques e as páginas definidas, mantendo a home orientada à conversão.
 - [x] Validar os fluxos público e administrativo em desktop e celular.
 - [x] Realizar o primeiro salvamento de destaques com a conta proprietária após o login na área administrativa.
+
+## Guia de configuração Google Cloud
+
+- [ ] Documentar o passo a passo para criar e configurar o projeto Google Cloud.
+- [ ] Documentar OAuth 2.0, consentimento, APIs, URLs autorizadas e Pub/Sub.
+- [ ] Orientar quais dados devem ser fornecidos ao projeto sem compartilhar senhas ou tokens no chat.
+
+---
+
+## Integração do Google Business Profile
+
+- [ ] Concluir a integração oficial somente após autorização e credenciais configuradas pela proprietária.
+- [ ] Validar avaliações reais e atualizações automáticas antes de exibi-las publicamente.
+
+---
+
+## Itens históricos de conversão já implementados
+
+- [x] Confirmar a jornada da home como apresentação e encaminhamento ao catálogo do WhatsApp.
+- [x] Confirmar páginas temáticas prioritárias e vitrine reduzida.
+- [x] Confirmar mapa e link de rotas com o endereço comercial validado.
+- [ ] Confirmar CTAs, páginas temáticas, avaliações reais e comportamento responsivo após a integração do Google Business Profile.
+
+---
+
+## Pendências técnicas para publicação externa
+
+- [ ] Confirmar o endereço publicado atual e orientar a troca do prefixo para jacquepeguemonte.
+- [ ] Exportar os ativos /manus-storage para uma versão portátil antes de migrar para GitHub Pages.
+- [ ] Confirmar os fluxos externos de reserva caso deixem de usar exclusivamente o WhatsApp.
