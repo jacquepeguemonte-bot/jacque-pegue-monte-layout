@@ -60,6 +60,16 @@ export function serveStatic(app: Express) {
 
   app.use(express.static(distPath));
 
+  // Serve the sitemap explicitly so the SPA fallback never turns it into an HTML page.
+  app.get("/sitemap.xml", (_req, res, next) => {
+    const sitemapPath = path.resolve(distPath, "sitemap.xml");
+    if (!fs.existsSync(sitemapPath)) {
+      next();
+      return;
+    }
+    res.type("application/xml").sendFile(sitemapPath);
+  });
+
   // fall through to index.html if the file doesn't exist
   app.use("*", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
