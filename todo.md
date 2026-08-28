@@ -199,3 +199,9 @@
 - [x] Auditar as rotas públicas e os temas com página editorial indexável.
 - [x] Criar sitemap.xml na raiz pública com URLs absolutas do domínio oficial.
 - [x] Validar XML, quantidade de URLs, ausência de duplicatas e acesso publicado.
+
+## Robots.txt
+
+- [x] Confirmar o domínio público e a URL do sitemap atual.
+- [x] Criar robots.txt na raiz pública com a diretiva do sitemap.
+- [ ] Validar o arquivo no build e no domínio publicado.

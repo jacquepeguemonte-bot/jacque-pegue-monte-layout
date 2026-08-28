@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://jacquelayout-5igykiqe.manus.space/sitemap.xml
