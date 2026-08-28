@@ -1,6 +1,6 @@
 import { asc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, themeHighlights, users } from "../drizzle/schema";
+import { GoogleReview, googleReviews, googleReviewSync, InsertUser, themeHighlights, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -111,4 +111,34 @@ export async function replaceThemeHighlights(themeSlugs: string[]) {
   });
 
   return listThemeHighlights();
+}
+
+export async function getGoogleReviewsAdminData() {
+  const db = await getDb();
+  if (!db) {
+    return { status: "not_connected" as const, reviews: [] as GoogleReview[] };
+  }
+
+  const syncRows = await db.select().from(googleReviewSync).orderBy(asc(googleReviewSync.id)).limit(1);
+  const sync = syncRows[0];
+  const reviews = await db.select().from(googleReviews).orderBy(asc(googleReviews.publishedAt));
+
+  if (!sync || sync.status === "not_connected") {
+    return { status: "not_connected" as const, reviews: [] as GoogleReview[], profileName: sync?.profileName ?? undefined };
+  }
+
+  if (sync.status === "error") {
+    return { status: "error" as const, reviews: [] as GoogleReview[], errorMessage: sync.errorMessage ?? "A integração do Google não conseguiu sincronizar as avaliações." };
+  }
+
+  const totalReviews = reviews.length;
+  const averageRating = totalReviews > 0 ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews : undefined;
+  return {
+    status: "connected" as const,
+    reviews,
+    profileName: sync.profileName ?? undefined,
+    lastSyncedAt: sync.lastSyncedAt ?? undefined,
+    totalReviews,
+    averageRating,
+  };
 }

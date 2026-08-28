@@ -2,7 +2,7 @@ import { COOKIE_NAME } from "@shared/const";
 import { z } from "zod";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { listThemeHighlights, replaceThemeHighlights } from "./db";
+import { getGoogleReviewsAdminData, listThemeHighlights, replaceThemeHighlights } from "./db";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
 
 const themeSlug = z.string().min(1).max(128).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
@@ -25,6 +25,9 @@ export const appRouter = router({
     replace: adminProcedure.input(z.object({
       themeSlugs: z.array(themeSlug).max(12).refine((slugs) => new Set(slugs).size === slugs.length, "Não repita um tema na seleção."),
     })).mutation(({ input }) => replaceThemeHighlights(input.themeSlugs)),
+  }),
+  googleReviews: router({
+    adminData: adminProcedure.query(() => getGoogleReviewsAdminData()),
   }),
 });
 

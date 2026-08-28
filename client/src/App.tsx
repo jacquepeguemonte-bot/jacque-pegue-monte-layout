@@ -9,6 +9,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import { AboutPage, BlogIndexPage, ContactPage, ServicePage, ThemeDetailPage } from "./pages/SeoPages";
 import { AdminThemesPage } from "./pages/AdminThemesPage";
+import { AdminReviewsPage } from "./pages/AdminReviewsPage";
 import { CATALOG_THEMES } from "./data/catalogThemes";
 import { SEO_THEME_SLUGS, slugify, WHATSAPP_CATALOG_URL } from "./lib/business";
 
@@ -25,6 +26,7 @@ function Router() {
       <Route path={"/contato"} component={ContactPage} />
       <Route path={"/blog"} component={BlogIndexPage} />
       <Route path={"/admin/temas"} component={AdminThemesPage} />
+      <Route path={"/admin/avaliacoes"} component={AdminReviewsPage} />
       {CATALOG_THEMES.filter((theme) => SEO_THEME_SLUGS.includes(slugify(theme.name) as (typeof SEO_THEME_SLUGS)[number])).map((theme) => {
         const themeSlug = slugify(theme.name);
         return <Route key={themeSlug} path={`/decoracao-${themeSlug}-goianesia`} component={() => <ThemeDetailPage themeSlug={themeSlug} />} />;

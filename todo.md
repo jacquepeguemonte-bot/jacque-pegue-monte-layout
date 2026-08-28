@@ -128,9 +128,9 @@
 
 ## Guia de configuração Google Cloud
 
-- [ ] Documentar o passo a passo para criar e configurar o projeto Google Cloud.
-- [ ] Documentar OAuth 2.0, consentimento, APIs, URLs autorizadas e Pub/Sub.
-- [ ] Orientar quais dados devem ser fornecidos ao projeto sem compartilhar senhas ou tokens no chat.
+- [x] Documentar o passo a passo para criar e configurar o projeto Google Cloud.
+- [x] Documentar OAuth 2.0, consentimento, APIs, URLs autorizadas e Pub/Sub.
+- [x] Orientar quais dados devem ser fornecidos ao projeto sem compartilhar senhas ou tokens no chat.
 
 ---
 
@@ -155,3 +155,24 @@
 - [ ] Confirmar o endereço publicado atual e orientar a troca do prefixo para jacquepeguemonte.
 - [ ] Exportar os ativos /manus-storage para uma versão portátil antes de migrar para GitHub Pages.
 - [ ] Confirmar os fluxos externos de reserva caso deixem de usar exclusivamente o WhatsApp.
+
+## Interface administrativa de avaliações Google
+
+- [x] Criar painel admin para exibir avaliações reais do Google Business Profile.
+- [x] Definir estados de conexão, carregamento, erro e ausência de avaliações sem dados fictícios.
+- [x] Preparar contrato de dados para avaliações autorizadas via OAuth.
+- [x] Integrar a interface ao layout administrativo existente.
+- [x] Cobrir a tela com teste automatizado e validar responsividade/compilação.
+
+## Conexão real de avaliações Google
+
+- [x] Implementar backend/tRPC para status da integração Google Business Profile e leitura de avaliações reais ou cacheadas.
+- [x] Conectar a página de avaliações às queries reais, com estados not_connected/loading/connected/error.
+- [x] Adicionar teste automatizado da tela administrativa nos estados vazio, erro e conectado.
+
+## Refinamento dos estados e testes de UI
+
+- [x] Ajustar a interface para distinguir not_connected, loading, connected e error em todos os blocos de status.
+- [x] Adicionar teste de renderização da AdminReviewsPage para estados vazio, erro e conectado.
+
+- [x] Impedir que o estado loading mostre simultaneamente o painel de ausência de avaliações.

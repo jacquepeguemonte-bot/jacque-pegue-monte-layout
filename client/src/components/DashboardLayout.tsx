@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/sidebar";
 import { startLogin } from "@/const";
 import { useIsMobile } from "@/hooks/useMobile";
-import { Sparkles, LogOut, PanelLeft } from "lucide-react";
+import { MessageSquareQuote, Sparkles, LogOut, PanelLeft } from "lucide-react";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { DashboardLayoutSkeleton } from './DashboardLayoutSkeleton';
@@ -29,6 +29,7 @@ import { Button } from "./ui/button";
 
 const menuItems = [
   { icon: Sparkles, label: "Temas em destaque", path: "/admin/temas" },
+  { icon: MessageSquareQuote, label: "Avaliações do Google", path: "/admin/avaliacoes" },
 ];
 
 const SIDEBAR_WIDTH_KEY = "sidebar-width";
