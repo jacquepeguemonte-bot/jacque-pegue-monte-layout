@@ -198,4 +198,4 @@
 
 - [x] Auditar as rotas públicas e os temas com página editorial indexável.
 - [x] Criar sitemap.xml na raiz pública com URLs absolutas do domínio oficial.
-- [ ] Validar XML, quantidade de URLs, ausência de duplicatas e acesso publicado.
+- [x] Validar XML, quantidade de URLs, ausência de duplicatas e acesso publicado.
