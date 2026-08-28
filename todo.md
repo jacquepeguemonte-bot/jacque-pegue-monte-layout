@@ -185,11 +185,17 @@
 
 ## Validação pública do arquivo de verificação
 
-- [ ] Salvar uma nova versão contendo o arquivo HTML na raiz pública.
-- [ ] Validar o arquivo no domínio publicado e confirmar o conteúdo exato.
+- [x] Salvar uma nova versão contendo o arquivo HTML na raiz pública.
+- [x] Validar o arquivo no domínio publicado e confirmar o conteúdo exato.
 
 ## Correção de acesso público do arquivo Google
 
 - [x] Ajustar a permissão do arquivo HTML para leitura pública e confirmar o artefato no build.
-- [ ] Republicar a correção de permissão em uma nova versão.
-- [ ] Confirmar novamente o conteúdo no domínio publicado após a republicação.
+- [x] Republicar a correção de permissão em uma nova versão.
+- [x] Confirmar novamente o conteúdo no domínio publicado após a republicação.
+
+## Sitemap XML
+
+- [x] Auditar as rotas públicas e os temas com página editorial indexável.
+- [x] Criar sitemap.xml na raiz pública com URLs absolutas do domínio oficial.
+- [ ] Validar XML, quantidade de URLs, ausência de duplicatas e acesso publicado.
