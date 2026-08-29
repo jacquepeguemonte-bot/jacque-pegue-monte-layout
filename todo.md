@@ -90,7 +90,7 @@
 
 ## Endereço e loading inicial
 
-- [ ] Confirmar o endereço publicado atual e orientar a troca do prefixo para jacquepeguemonte.
+- [x] Confirmar o endereço publicado atual e orientar a troca do prefixo para jacquepeguemonte.
 - [x] Criar um loading inicial suave com a identidade da marca.
 - [x] Respeitar preferência de movimento reduzido e impedir bloqueio da navegação.
 - [x] Validar a abertura em desktop e celular.
@@ -152,7 +152,7 @@
 
 ## Pendências técnicas para publicação externa
 
-- [ ] Confirmar o endereço publicado atual e orientar a troca do prefixo para jacquepeguemonte.
+- [x] Confirmar o endereço publicado atual e orientar a troca do prefixo para jacquepeguemonte.
 - [ ] Exportar os ativos /manus-storage para uma versão portátil antes de migrar para GitHub Pages.
 - [ ] Confirmar os fluxos externos de reserva caso deixem de usar exclusivamente o WhatsApp.
 
@@ -221,3 +221,27 @@
 - [x] Documentar que a fonte oficial dos temas continua sendo a planilha/Drive, não o Google Business Profile.
 - [x] Documentar tecnicamente a sincronização programada da fonte oficial de temas ou ajustar o escopo para não prometer atualização automática.
 - [ ] Validar em código o fluxo completo do Google Business Profile após credenciais: OAuth, leitura de avaliações, estados de erro e persistência.
+
+## Recuperação das credenciais Google Business Profile
+
+- [ ] Identificar em qual etapa a proprietária está bloqueada: conta/perfil, projeto Google Cloud, APIs, tela de consentimento ou OAuth.
+- [ ] Orientar a recuperação de acesso e a configuração do cliente OAuth sem coletar senha ou token no chat.
+- [ ] Confirmar os dados não sensíveis necessários para conectar o site.
+- [ ] Concluir a integração oficial e validar avaliações reais somente após o consentimento da proprietária.
+
+## Bloqueio na chave de API do Google
+
+- [ ] Identificar a mensagem exibida ao tentar criar a chave de API.
+- [ ] Verificar projeto, faturamento, permissões e restrições de API aplicáveis.
+- [ ] Confirmar se OAuth é suficiente para avaliações do Business Profile e evitar uma chave desnecessária.
+
+## Pausa da integração Google e relatório dos ativos Lovable
+
+- [x] Pausar a integração do Google Business Profile sem alterar o site público.
+- [x] Revisar os arquivos e imagens importados do Lovable no armazenamento permanente.
+- [x] Documentar quais temas receberam imagens do Lovable e como são usados no site atual.
+
+## Documentação detalhada dos ativos Lovable
+
+- [x] Documentar em `docs/ANALISE_CATALOGO_LOVABLE.md` a lista dos 12 temas atualizados e informar que as imagens foram copiadas para `/manus-storage` e referenciadas em `client/src/data/catalogThemes.ts`.
+- [x] Registrar quais áreas públicas usam as imagens atualizadas: home e páginas editoriais correspondentes.
