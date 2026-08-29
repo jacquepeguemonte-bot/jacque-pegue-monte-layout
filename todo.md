@@ -204,7 +204,14 @@
 
 - [x] Confirmar o domínio público e a URL do sitemap atual.
 - [x] Criar robots.txt na raiz pública com a diretiva do sitemap.
-- [ ] Validar o arquivo no build e no domínio publicado.
+- [x] Validar o arquivo no build e no domínio publicado.
 
 - [x] Adicionar rota explícita para servir robots.txt como texto no servidor de produção.
-- [ ] Republicar e confirmar a diretiva Sitemap no domínio público.
+- [x] Republicar e confirmar a diretiva Sitemap no domínio público.
+
+## Catálogo do Lovable — análise e integração
+
+- [x] Confirmar se o projeto Lovable abriu e se o catálogo está acessível nesta sessão.
+- [x] Mapear temas, páginas e URLs de imagens reutilizáveis.
+- [x] Importar somente ativos acessíveis e compatíveis com a identidade atual.
+- [x] Validar a integração sem alterar os fluxos públicos existentes.

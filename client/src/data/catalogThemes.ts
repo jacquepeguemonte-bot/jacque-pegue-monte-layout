@@ -14,7 +14,7 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "name": "Fazendinha",
     "category": "Temáticos",
     "price": "R$ 170",
-    "image": "/manus-storage/fazendinha_e5b92559.jpg"
+    "image": "/manus-storage/fazendinha_fce77a9e.jpg"
   },
   {
     "name": "Fazendinha Rosa",
@@ -32,7 +32,7 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "name": "Patrulha Canina",
     "category": "Infantil",
     "price": "R$ 170",
-    "image": "/manus-storage/patrulha-canina_630e41e7.png"
+    "image": "/manus-storage/patrulha-canina_30cc6dbf.png"
   },
   {
     "name": "Dragon Ball",
@@ -50,7 +50,7 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "name": "Chá Revelação",
     "category": "Celebrações",
     "price": "R$ 170",
-    "image": "/manus-storage/cha-revelacao_0ed1da1d.png"
+    "image": "/manus-storage/cha-revelacao_6879980f.png"
   },
   {
     "name": "365 Sorrisos",
@@ -62,7 +62,7 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "name": "Princesas",
     "category": "Infantil",
     "price": "R$ 170",
-    "image": "/manus-storage/princesas_70420579.jpg"
+    "image": "/manus-storage/princesas_0c898afd.jpg"
   },
   {
     "name": "Rapunzel",
@@ -86,7 +86,7 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "name": "Minecraft",
     "category": "Infantil",
     "price": "R$ 170",
-    "image": "/manus-storage/minecraft_77d3e7da.jpg"
+    "image": "/manus-storage/minecraft_3cd651fa.jpg"
   },
   {
     "name": "Oh Baby",
@@ -104,13 +104,13 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "name": "Futebol",
     "category": "Esportes",
     "price": "R$ 170",
-    "image": "/manus-storage/futebol_842caba9.png"
+    "image": "/manus-storage/futebol_3acb9665.jpg"
   },
   {
     "name": "Lilo e Stitch",
     "category": "Infantil",
     "price": "R$ 170",
-    "image": "/manus-storage/lilo-e-stitch_165f5bb8.png"
+    "image": "/manus-storage/lilo-e-stitch_ad4f9ded.png"
   },
   {
     "name": "Bluey",
@@ -194,7 +194,7 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "name": "Barbie",
     "category": "Infantil",
     "price": "R$ 170",
-    "image": "/manus-storage/barbie_e368d987.png"
+    "image": "/manus-storage/barbie_b7b230c4.png"
   },
   {
     "name": "Kuromi",
@@ -206,13 +206,13 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "name": "Homem Aranha",
     "category": "Infantil",
     "price": "R$ 170",
-    "image": "/manus-storage/homem-aranha_242e4c80.png"
+    "image": "/manus-storage/homem-aranha_41f8b703.png"
   },
   {
     "name": "Hot Wheels",
     "category": "Infantil",
     "price": "R$ 170",
-    "image": "/manus-storage/hot-wheels_f4a161e3.png"
+    "image": "/manus-storage/hot-wheels_241614e3.png"
   },
   {
     "name": "Ano Novo",
@@ -248,7 +248,7 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "name": "Jardim Encantado",
     "category": "Temáticos",
     "price": "R$ 170",
-    "image": "/manus-storage/jardim-encantado_7e50b27a.jpg"
+    "image": "/manus-storage/jardim-encantado_b96499e2.jpeg"
   },
   {
     "name": "Bailarina",
@@ -284,7 +284,7 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "name": "Sonic",
     "category": "Infantil",
     "price": "R$ 170",
-    "image": "/manus-storage/sonic_5cc3656e.png"
+    "image": "/manus-storage/sonic_327be9bf.png"
   },
   {
     "name": "Guns N' Roses",
