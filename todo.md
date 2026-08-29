@@ -62,8 +62,8 @@
 
 - [x] Definir a página inicial como apresentação e encaminhamento ao catálogo do WhatsApp.
 - [x] Selecionar páginas temáticas prioritárias e reduzir a vitrine da página inicial.
-- [ ] Verificar requisitos técnicos, conexão e autorização para Google Business Profile.
-- [ ] Preparar uma integração segura para avaliações reais e atualização programada de temas.
+- [x] Verificar requisitos técnicos, conexão e autorização para Google Business Profile.
+- [x] Preparar uma integração segura para avaliações reais e atualização programada de temas.
 - [x] Exibir localização com mapa e link de rotas, usando o endereço comercial confirmado.
 - [ ] Validar CTAs, páginas temáticas, avaliações reais e comportamento responsivo.
 
@@ -215,3 +215,9 @@
 - [x] Mapear temas, páginas e URLs de imagens reutilizáveis.
 - [x] Importar somente ativos acessíveis e compatíveis com a identidade atual.
 - [x] Validar a integração sem alterar os fluxos públicos existentes.
+
+## Fonte oficial dos temas e limites da integração Google
+
+- [x] Documentar que a fonte oficial dos temas continua sendo a planilha/Drive, não o Google Business Profile.
+- [x] Documentar tecnicamente a sincronização programada da fonte oficial de temas ou ajustar o escopo para não prometer atualização automática.
+- [ ] Validar em código o fluxo completo do Google Business Profile após credenciais: OAuth, leitura de avaliações, estados de erro e persistência.

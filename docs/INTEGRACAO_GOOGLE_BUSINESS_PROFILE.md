@@ -25,3 +25,9 @@ Para implementar a segunda alternativa, é necessário receber a autorização e
 
 [1]: https://developers.google.com/my-business/content/implement-oauth "Google Business Profile APIs — Implement OAuth with Business Profile APIs"
 [2]: https://developers.google.com/my-business/content/notification-setup "Google Business Profile APIs — Manage real-time notifications"
+
+## Limite de escopo do catálogo
+
+O Google Business Profile será usado somente para avaliações reais da empresa, após OAuth e autorização da conta proprietária. Ele **não** é fonte de temas nem de disponibilidade de kits.
+
+A fonte oficial dos temas permanece o catálogo canônico alimentado por planilha/Google Drive e revisado pela proprietária. O site não promete atualização automática de temas neste momento; a seleção de destaques é administrada pelo painel protegido e a atualização do catálogo continua controlada pela fonte oficial. Qualquer automação futura de planilha/Drive deverá ser tratada separadamente, com agendamento, tratamento de erro e validação antes de publicação.
