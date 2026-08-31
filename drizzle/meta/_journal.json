@@ -15,6 +15,13 @@
       "when": 1787947501386,
       "tag": "0001_illegal_post",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1788187542119,
+      "tag": "0002_big_otto_octavius",
+      "breakpoints": true
     }
   ]
 }

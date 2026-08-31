@@ -49,6 +49,7 @@ function ConnectionNotice({ onRefresh, isRefreshing, status, lastSyncedAt }: { o
         ].map(([number, title, description]) => <div key={number} className="rounded-2xl border border-[#f0e5e7] bg-[#fffaf8] p-4"><span className="text-xs font-black text-[#e83d71]">{number}</span><strong className="mt-2 block text-sm text-[#4a3940]">{title}</strong><span className="mt-1 block text-xs leading-5 text-[#8a777e]">{description}</span></div>)}
       </div>
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+        {status !== "connected" && <a href="/api/google/connect" className="inline-flex h-10 items-center justify-center rounded-full bg-[#e83d71] px-5 text-sm font-bold text-white transition hover:bg-[#c62f5d]">Autorizar Google</a>}
         <Button type="button" variant="outline" className="rounded-full border-[#e5d5da] text-[#5d4e54]" onClick={onRefresh} disabled={isRefreshing}><RefreshCw className={`mr-2 h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`} />{isRefreshing ? "Verificando..." : status === "connected" ? "Atualizar avaliações" : "Verificar conexão"}</Button>
         <a href={GOOGLE_PROFILE_HELP_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-2 text-sm font-bold text-[#d43a68] hover:underline">Ajuda do Google <ExternalLink className="h-3.5 w-3.5" /></a>
       </div>
