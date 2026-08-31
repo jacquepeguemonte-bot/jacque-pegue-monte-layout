@@ -99,6 +99,7 @@ export default function Home() {
           <nav className="desktop-nav" aria-label="Navegação principal">
             {NAV_ITEMS.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
           </nav>
+          <a className="header-admin-link" href="/admin/avaliacoes">Área da equipe</a>
           <a className="header-cta" href={WHATSAPP} target="_blank" rel="noreferrer">Ver disponibilidade <ArrowUpRight size={16} /></a>
           <button className="menu-trigger" aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X size={23} /> : <Menu size={23} />}
