@@ -260,6 +260,19 @@
 
 ## Validação pública do acesso administrativo
 
-- [ ] Publicar a alteração que adiciona o link “Área administrativa” no rodapé.
-- [ ] Confirmar no domínio publicado que o link aparece na home e abre `/admin/avaliacoes`.
+- [x] Publicar a alteração que adiciona o link “Área administrativa” no rodapé.
+- [x] Confirmar no domínio publicado que o link aparece na home e abre `/admin/avaliacoes`.
 - [ ] Confirmar no domínio publicado a tela de login/admin e a presença do botão “Autorizar Google”.
+
+## Usabilidade dos botões e endereço curto
+
+- [x] Aumentar o tamanho e a área de toque dos links de experiência e serviços.
+- [x] Ajustar o nome visual do acesso administrativo para uma identificação mais curta, se aplicável.
+- [ ] Verificar a possibilidade de usar somente `jacquepeguemonte` no endereço do site.
+- [x] Validar os botões em celular e desktop e publicar a melhoria.
+
+## Validação final dos botões ampliados
+
+- [x] Validar visualmente em desktop os links ampliados de experiência e serviços.
+- [ ] Publicar/salvar checkpoint da melhoria dos botões.
+- [ ] Revalidar no domínio publicado os botões maiores e o layout do cabeçalho, rodapé e conteúdo.
