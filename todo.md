@@ -245,3 +245,9 @@
 
 - [x] Documentar em `docs/ANALISE_CATALOGO_LOVABLE.md` a lista dos 12 temas atualizados e informar que as imagens foram copiadas para `/manus-storage` e referenciadas em `client/src/data/catalogThemes.ts`.
 - [x] Registrar quais áreas públicas usam as imagens atualizadas: home e páginas editoriais correspondentes.
+
+## Erro 403 na autorização Google
+
+- [x] Diagnosticar o 403 exibido pelo Google durante o início do OAuth.
+- [x] Corrigir o fluxo ou os parâmetros OAuth quando a causa estiver confirmada.
+- [ ] Validar novamente o retorno ao painel e a sincronização das avaliações reais.

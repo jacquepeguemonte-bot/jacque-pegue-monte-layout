@@ -75,6 +75,10 @@ async function syncReviews(accessToken: string, refreshTokenCiphertext: string) 
 
 export function registerGoogleBusinessProfileRoutes(app: Express) {
   app.get("/api/google/connect", (req, res) => {
+    const host = req.get("host") || "";
+    if (host.endsWith(".manus.computer")) {
+      return res.redirect("https://jacquelayout-5igykiqe.manus.space/api/google/connect");
+    }
     if (!ENV.googleOAuthClientId || !ENV.googleOAuthClientSecret) return res.status(503).send("OAuth do Google não configurado.");
     const state = crypto.randomBytes(24).toString("base64url");
     res.setHeader("Set-Cookie", `${STATE_COOKIE}=${encodeURIComponent(state)}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`);
