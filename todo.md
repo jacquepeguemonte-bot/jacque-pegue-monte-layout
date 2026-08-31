@@ -224,16 +224,16 @@
 
 ## Recuperação das credenciais Google Business Profile
 
-- [ ] Identificar em qual etapa a proprietária está bloqueada: conta/perfil, projeto Google Cloud, APIs, tela de consentimento ou OAuth.
-- [ ] Orientar a recuperação de acesso e a configuração do cliente OAuth sem coletar senha ou token no chat.
-- [ ] Confirmar os dados não sensíveis necessários para conectar o site.
+- [x] Identificar em qual etapa a proprietária está bloqueada: conta/perfil, projeto Google Cloud, APIs, tela de consentimento ou OAuth.
+- [x] Orientar a recuperação de acesso e a configuração do cliente OAuth sem coletar senha ou token no chat.
+- [x] Confirmar os dados não sensíveis necessários para conectar o site.
 - [ ] Concluir a integração oficial e validar avaliações reais somente após o consentimento da proprietária.
 
 ## Bloqueio na chave de API do Google
 
 - [ ] Identificar a mensagem exibida ao tentar criar a chave de API.
 - [ ] Verificar projeto, faturamento, permissões e restrições de API aplicáveis.
-- [ ] Confirmar se OAuth é suficiente para avaliações do Business Profile e evitar uma chave desnecessária.
+- [x] Confirmar se OAuth é suficiente para avaliações do Business Profile e evitar uma chave desnecessária.
 
 ## Pausa da integração Google e relatório dos ativos Lovable
 
@@ -251,3 +251,15 @@
 - [x] Diagnosticar o 403 exibido pelo Google durante o início do OAuth.
 - [x] Corrigir o fluxo ou os parâmetros OAuth quando a causa estiver confirmada.
 - [ ] Validar novamente o retorno ao painel e a sincronização das avaliações reais.
+
+## Acesso administrativo no site publicado
+
+- [x] Reproduzir a ausência do botão ou link administrativo no domínio publicado.
+- [x] Corrigir a entrada e a visibilidade do acesso `/admin/avaliacoes`.
+- [ ] Validar login, painel administrativo e botão Autorizar Google no domínio publicado.
+
+## Validação pública do acesso administrativo
+
+- [ ] Publicar a alteração que adiciona o link “Área administrativa” no rodapé.
+- [ ] Confirmar no domínio publicado que o link aparece na home e abre `/admin/avaliacoes`.
+- [ ] Confirmar no domínio publicado a tela de login/admin e a presença do botão “Autorizar Google”.

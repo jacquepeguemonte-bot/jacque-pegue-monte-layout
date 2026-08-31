@@ -225,7 +225,7 @@ export default function Home() {
         <div className="footer-main">
           <div className="footer-brand"><BrandLockup /><p>Decoração para celebrar o que importa, com praticidade para você viver cada momento.</p></div>
           <div className="footer-links"><p>Navegue</p>{NAV_ITEMS.slice(1).map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}</div>
-          <div className="footer-links"><p>Atendimento</p><a href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Catálogo no WhatsApp</a><a href="https://www.instagram.com/jacque_pegue_monte" target="_blank" rel="noreferrer">Instagram</a><a href="#catalogo">Como consultar</a></div>
+          <div className="footer-links"><p>Atendimento</p><a href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Catálogo no WhatsApp</a><a href="https://www.instagram.com/jacque_pegue_monte" target="_blank" rel="noreferrer">Instagram</a><a href="#catalogo">Como consultar</a><a href="/admin/avaliacoes">Área administrativa</a></div>
         </div>
         <div className="footer-bottom"><span>© 2026 Jacque Pegue e Monte. Goianésia — GO.</span><span>Feito para celebrar com leveza.</span></div>
       </footer>
