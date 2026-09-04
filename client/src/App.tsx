@@ -27,7 +27,9 @@ function Router() {
       <Route path={"/blog"} component={BlogIndexPage} />
       <Route path={"/admin/temas"} component={AdminThemesPage} />
       <Route path={"/admin/avaliacoes"} component={AdminReviewsPage} />
-      {CATALOG_THEMES.filter((theme) => SEO_THEME_SLUGS.includes(slugify(theme.name) as (typeof SEO_THEME_SLUGS)[number])).map((theme) => {
+      <Route path={"/decoracao-carros-goianesia"} component={() => <ThemeDetailPage themeSlug="carros" />} />
+      <Route path={"/decoracao-lingerie-goianesia"} component={() => <ThemeDetailPage themeSlug="lingerie" />} />
+      {CATALOG_THEMES.filter((theme) => SEO_THEME_SLUGS.includes(slugify(theme.name) as (typeof SEO_THEME_SLUGS)[number]) && !["carros", "lingerie"].includes(slugify(theme.name))).map((theme) => {
         const themeSlug = slugify(theme.name);
         return <Route key={themeSlug} path={`/decoracao-${themeSlug}-goianesia`} component={() => <ThemeDetailPage themeSlug={themeSlug} />} />;
       })}

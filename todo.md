@@ -289,3 +289,10 @@
 - [x] Armazenar as duas imagens fora do código-fonte e referenciá-las pelo armazenamento permanente.
 - [x] Definir slugs, metadados locais e destino de navegação dos novos temas.
 - [ ] Validar cartões, responsividade e publicação dos novos temas.
+
+## Correção das rotas públicas dos novos temas
+
+- [ ] Reproduzir o redirecionamento incorreto de Carros e verificar Lingerie no domínio publicado.
+- [ ] Diagnosticar por que o preview abre as páginas e a produção envia ao WhatsApp.
+- [ ] Corrigir a publicação ou o fallback de rotas dos dois temas.
+- [ ] Validar imagens, títulos locais e sitemap no domínio publicado.

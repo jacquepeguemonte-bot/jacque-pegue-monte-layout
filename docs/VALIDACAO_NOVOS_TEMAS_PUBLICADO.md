@@ -1,0 +1,2 @@
+
+Auditoria pública após o checkpoint `5cb4ed24`: `/sitemap.xml` contém as URLs de Carros e Lingerie e o bundle JavaScript publicado contém as strings `Carros` e `Lingerie`. Entretanto, a navegação direta para `/decoracao-carros-goianesia` e `/decoracao-lingerie-goianesia` redirecionou ao catálogo do WhatsApp. Como comparação, `/decoracao-fazendinha-goianesia` abriu normalmente a página editorial existente. A inconsistência indica diferença entre o bundle publicado e a avaliação dinâmica das rotas/fallback, ainda pendente de correção.
