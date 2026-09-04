@@ -387,6 +387,18 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "category": "Celebrações",
     "price": "R$ 170",
     "image": "/manus-storage/debutante-15-anos_9c62b1ab.png"
+  },
+  {
+    "name": "Carros",
+    "category": "Infantil",
+    "price": "R$ 170",
+    "image": "/manus-storage/carros_ee0dfb71.png"
+  },
+  {
+    "name": "Lingerie",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/lingerie_c05b85a9.png"
   }
 ];
 

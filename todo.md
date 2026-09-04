@@ -274,5 +274,18 @@
 ## Validação final dos botões ampliados
 
 - [x] Validar visualmente em desktop os links ampliados de experiência e serviços.
-- [ ] Publicar/salvar checkpoint da melhoria dos botões.
-- [ ] Revalidar no domínio publicado os botões maiores e o layout do cabeçalho, rodapé e conteúdo.
+- [x] Publicar/salvar checkpoint da melhoria dos botões.
+- [x] Revalidar no domínio publicado os botões maiores e o layout do cabeçalho, rodapé e conteúdo.
+
+## Evidência visual final publicada
+
+- [x] Validar visualmente no domínio publicado, em desktop e celular, os botões ampliados sem sobreposição.
+- [x] Registrar evidência objetiva da revisão da home publicada após o checkpoint 44f04d60.
+
+## Novos temas recebidos por imagem
+
+- [x] Adicionar o tema Carros ao catálogo usando a imagem fornecida.
+- [x] Adicionar o tema Lingerie ao catálogo usando a imagem fornecida.
+- [x] Armazenar as duas imagens fora do código-fonte e referenciá-las pelo armazenamento permanente.
+- [x] Definir slugs, metadados locais e destino de navegação dos novos temas.
+- [ ] Validar cartões, responsividade e publicação dos novos temas.

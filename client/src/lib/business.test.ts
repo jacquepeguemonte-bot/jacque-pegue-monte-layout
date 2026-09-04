@@ -11,4 +11,11 @@ describe("rotas de temas", () => {
     expect(isThemePageAvailable("Fazendinha Rosa")).toBe(false);
     expect(getThemeDestination("Fazendinha Rosa")).toBe(WHATSAPP_CATALOG_URL);
   });
+
+  it("mantém páginas locais para os novos temas adicionados ao catálogo", () => {
+    expect(isThemePageAvailable("Carros")).toBe(true);
+    expect(getThemePath("Carros")).toBe("/decoracao-carros-goianesia");
+    expect(isThemePageAvailable("Lingerie")).toBe(true);
+    expect(getThemePath("Lingerie")).toBe("/decoracao-lingerie-goianesia");
+  });
 });

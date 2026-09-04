@@ -46,6 +46,8 @@ export const SEO_THEME_SLUGS = [
   "futebol",
   "cha-revelacao",
   "jardim-encantado",
+  "carros",
+  "lingerie",
 ] as const;
 
 export const DEFAULT_FEATURED_THEME_SLUGS = SEO_THEME_SLUGS;
