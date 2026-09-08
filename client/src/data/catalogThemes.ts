@@ -399,6 +399,12 @@ export const CATALOG_THEMES: CatalogTheme[] = [
     "category": "Celebrações",
     "price": "R$ 170",
     "image": "/manus-storage/lingerie_c05b85a9.png"
+  },
+  {
+    "name": "Verde Esmeralda & Nude Boho",
+    "category": "Celebrações",
+    "price": "R$ 170",
+    "image": "/manus-storage/verde-esmeralda-nude-boho_61d1458b.jpeg"
   }
 ];
 

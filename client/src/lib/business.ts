@@ -48,6 +48,7 @@ export const SEO_THEME_SLUGS = [
   "jardim-encantado",
   "carros",
   "lingerie",
+  "verde-esmeralda-nude-boho",
 ] as const;
 
 export const DEFAULT_FEATURED_THEME_SLUGS = SEO_THEME_SLUGS;
@@ -60,6 +61,11 @@ export const slugify = (value: string) => value
   .replace(/^-+|-+$/g, "");
 
 export const getThemePath = (themeName: string) => `/decoracao-${slugify(themeName)}-goianesia`;
+
+export const getThemeMeta = (themeName: string) => ({
+  title: `Decoração ${themeName} em Goianésia – GO | Jacque Pegue & Monte`,
+  description: `Decoração ${themeName} Pegue & Monte em Goianésia – GO. Consulte a disponibilidade do kit para sua comemoração.`,
+});
 
 export const isThemePageAvailable = (themeName: string) => SEO_THEME_SLUGS.includes(slugify(themeName) as (typeof SEO_THEME_SLUGS)[number]);
 

@@ -288,11 +288,28 @@
 - [x] Adicionar o tema Lingerie ao catálogo usando a imagem fornecida.
 - [x] Armazenar as duas imagens fora do código-fonte e referenciá-las pelo armazenamento permanente.
 - [x] Definir slugs, metadados locais e destino de navegação dos novos temas.
-- [ ] Validar cartões, responsividade e publicação dos novos temas.
+- [x] Validar cartões, responsividade e publicação dos novos temas.
 
 ## Correção das rotas públicas dos novos temas
 
-- [ ] Reproduzir o redirecionamento incorreto de Carros e verificar Lingerie no domínio publicado.
-- [ ] Diagnosticar por que o preview abre as páginas e a produção envia ao WhatsApp.
-- [ ] Corrigir a publicação ou o fallback de rotas dos dois temas.
-- [ ] Validar imagens, títulos locais e sitemap no domínio publicado.
+- [x] Reproduzir o redirecionamento incorreto de Carros e verificar Lingerie no domínio publicado.
+- [x] Diagnosticar por que o preview abre as páginas e a produção envia ao WhatsApp.
+- [x] Corrigir a publicação ou o fallback de rotas dos dois temas.
+- [x] Validar imagens, títulos locais e sitemap no domínio publicado.
+
+## Novo tema Verde Esmeralda & Nude Boho
+
+- [x] Adicionar o tema Verde Esmeralda & Nude Boho ao catálogo usando a imagem fornecida.
+- [x] Armazenar a imagem no armazenamento permanente e referenciá-la fora do código-fonte.
+- [x] Definir slug, categoria, metadados locais, rota editorial e sitemap.
+- [ ] Validar a página em celular e desktop e confirmar a publicação no domínio público.
+
+## Metadados SEO do novo tema
+
+- [x] Verificar e registrar title, description e canonical gerados para Verde Esmeralda & Nude Boho.
+- [x] Cobrir a geração dos metadados com teste ou validação objetiva.
+
+## Validação efetiva dos metadados do novo tema
+
+- [ ] Verificar na rota publicada document.title, meta description e canonical de Verde Esmeralda & Nude Boho.
+- [x] Adicionar validação automatizada ou integrada do canonical aplicado pelo PageMeta nessa rota.

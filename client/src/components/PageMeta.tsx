@@ -6,13 +6,19 @@ type PageMetaProps = {
   description: string;
 };
 
+type PageMetaDocument = PageMetaProps & { url: string };
+
+export function applyPageMeta({ title, description, url }: PageMetaDocument) {
+  document.title = title;
+  const descriptionTag = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+  descriptionTag?.setAttribute("content", description);
+  const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  canonical?.setAttribute("href", url);
+}
+
 export function PageMeta({ title, description }: PageMetaProps) {
   useEffect(() => {
-    document.title = title;
-    const descriptionTag = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    descriptionTag?.setAttribute("content", description);
-    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    canonical?.setAttribute("href", window.location.href);
+    applyPageMeta({ title, description, url: window.location.href });
   }, [description, title]);
 
   return null;

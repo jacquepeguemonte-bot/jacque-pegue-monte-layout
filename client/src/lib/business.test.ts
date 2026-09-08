@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getThemeDestination, getThemePath, isThemePageAvailable, WHATSAPP_CATALOG_URL } from "./business";
+import { getThemeDestination, getThemeMeta, getThemePath, isThemePageAvailable, WHATSAPP_CATALOG_URL } from "./business";
 
 describe("rotas de temas", () => {
   it("abre uma página própria para um tema selecionado na estratégia de SEO", () => {
@@ -17,5 +17,11 @@ describe("rotas de temas", () => {
     expect(getThemePath("Carros")).toBe("/decoracao-carros-goianesia");
     expect(isThemePageAvailable("Lingerie")).toBe(true);
     expect(getThemePath("Lingerie")).toBe("/decoracao-lingerie-goianesia");
+    expect(isThemePageAvailable("Verde Esmeralda & Nude Boho")).toBe(true);
+    expect(getThemePath("Verde Esmeralda & Nude Boho")).toBe("/decoracao-verde-esmeralda-nude-boho-goianesia");
+    expect(getThemeMeta("Verde Esmeralda & Nude Boho")).toEqual({
+      title: "Decoração Verde Esmeralda & Nude Boho em Goianésia – GO | Jacque Pegue & Monte",
+      description: "Decoração Verde Esmeralda & Nude Boho Pegue & Monte em Goianésia – GO. Consulte a disponibilidade do kit para sua comemoração.",
+    });
   });
 });
