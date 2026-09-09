@@ -11,11 +11,10 @@ const API_BASE = "https://mybusiness.googleapis.com/v4";
 const STATE_COOKIE = "google_business_oauth_state";
 const REDIRECT_PATH = "/api/google/oauth/callback";
 const OAUTH_SCOPE = "https://www.googleapis.com/auth/business.manage";
+const PUBLIC_SITE_ORIGIN = "https://jacquelayout-5igykiqe.manus.space";
 
-function redirectUri(req: Request) {
-  const configuredOrigin = process.env.GOOGLE_OAUTH_REDIRECT_ORIGIN;
-  const origin = configuredOrigin || `${req.protocol}://${req.get("host")}`;
-  return `${origin}${REDIRECT_PATH}`;
+function redirectUri(_req: Request) {
+  return `${PUBLIC_SITE_ORIGIN}${REDIRECT_PATH}`;
 }
 
 function encrypt(value: string) {

@@ -302,7 +302,7 @@
 - [x] Adicionar o tema Verde Esmeralda & Nude Boho ao catálogo usando a imagem fornecida.
 - [x] Armazenar a imagem no armazenamento permanente e referenciá-la fora do código-fonte.
 - [x] Definir slug, categoria, metadados locais, rota editorial e sitemap.
-- [ ] Validar a página em celular e desktop e confirmar a publicação no domínio público.
+- [x] Validar a página em celular e desktop e confirmar a publicação no domínio público.
 
 ## Metadados SEO do novo tema
 
@@ -311,5 +311,5 @@
 
 ## Validação efetiva dos metadados do novo tema
 
-- [ ] Verificar na rota publicada document.title, meta description e canonical de Verde Esmeralda & Nude Boho.
+- [x] Verificar na rota publicada document.title, meta description e canonical de Verde Esmeralda & Nude Boho.
 - [x] Adicionar validação automatizada ou integrada do canonical aplicado pelo PageMeta nessa rota.
