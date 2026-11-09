@@ -32,6 +32,7 @@ const NAV_ITEMS = [
   { label: "Início", href: "#inicio" },
   { label: "Sobre nós", href: "#sobre" },
   { label: "Catálogo", href: "#catalogo" },
+  { label: "Revista", href: "/revista" },
   { label: "Como funciona", href: "#como-funciona" },
   { label: "Diferenciais", href: "#diferenciais" },
   { label: "Contato", href: "#contato" },

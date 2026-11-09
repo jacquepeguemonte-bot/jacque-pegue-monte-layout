@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import { AboutPage, BlogIndexPage, ContactPage, ServicePage, ThemeDetailPage } from "./pages/SeoPages";
 import { AdminThemesPage } from "./pages/AdminThemesPage";
 import { AdminReviewsPage } from "./pages/AdminReviewsPage";
+import { DigitalMagazine } from "./pages/DigitalMagazine";
 import { CATALOG_THEMES } from "./data/catalogThemes";
 import { SEO_THEME_SLUGS, slugify, WHATSAPP_CATALOG_URL } from "./lib/business";
 
@@ -25,6 +26,7 @@ function Router() {
       <Route path={"/sobre"} component={AboutPage} />
       <Route path={"/contato"} component={ContactPage} />
       <Route path={"/blog"} component={BlogIndexPage} />
+      <Route path={"/revista"} component={DigitalMagazine} />
       <Route path={"/admin/temas"} component={AdminThemesPage} />
       <Route path={"/admin/avaliacoes"} component={AdminReviewsPage} />
       <Route path={"/decoracao-carros-goianesia"} component={() => <ThemeDetailPage themeSlug="carros" />} />

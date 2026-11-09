@@ -22,6 +22,7 @@ export function PublicPageShell({ children }: PublicPageShellProps) {
           <Link href="/festa-infantil-goianesia">Festa infantil</Link>
           <Link href="/pegue-e-monte-goianesia">Pegue & Monte</Link>
           <Link href="/aluguel-decoracao-goianesia">Aluguel</Link>
+          <Link href="/revista">Revista</Link>
           <Link href="/contato">Contato</Link>
         </nav>
         <a className="seo-header-cta" href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Abrir catálogo <ArrowUpRight size={15} /></a>
