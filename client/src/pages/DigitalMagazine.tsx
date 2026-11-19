@@ -1,93 +1,26 @@
-import { useMemo, useState } from "react";
-import { ArrowDown, ArrowUpRight, BookOpen, Heart, Search, Sparkles } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, Heart, Sparkles } from "lucide-react";
 import { Link } from "wouter";
 import { PageMeta } from "@/components/PageMeta";
 import { PublicPageShell } from "@/components/PublicPageShell";
-import { MAGAZINE_CATEGORIES, MAGAZINE_THEMES } from "@/data/magazineThemes";
+import { MAGAZINE_CATEGORIES, MAGAZINE_THEMES, type MagazineTheme } from "@/data/magazineThemes";
 import { WHATSAPP_CATALOG_URL } from "@/lib/business";
 
-const categoryIntro: Record<string, string> = {
-  Todos: "Uma curadoria completa para você encontrar a atmosfera da sua próxima celebração.",
-  Meninos: "Aventuras, heróis, velocidade e mundos para comemorar em grande estilo.",
-  Meninas: "Cores, personagens e delicadeza para festas cheias de personalidade.",
-  Unissex: "Temas versáteis que funcionam para diferentes idades e estilos de festa.",
-  Celebrações: "Chás, casamentos, batizados, formaturas e momentos que merecem um cenário especial.",
-  "Adultos & sociais": "Composições sofisticadas para aniversários, encontros e comemorações adultas.",
+type Page = { kind: "cover" | "letter" | "trend" | "theme" | "closing"; title: string; eyebrow: string; text?: string; bullets?: string[]; theme?: MagazineTheme };
+const trendCopy: Record<string, { title: string; text: string; bullets: string[] }> = {
+  Meninos: { title: "A nova festa infantil tem mais história e menos excesso", text: "A tendência é criar cenários que parecem um pequeno universo: uma cor dominante, um personagem como ponto de partida e elementos que ajudam a criança a imaginar.", bullets: ["Paletas com duas ou três cores principais", "Painel e mesa pensados como cenário para fotos", "Detalhes afetivos que contam a história da criança"] },
+  Meninas: { title: "Delicadeza com personalidade", text: "O rosa continua presente, mas aparece acompanhado de lilás, azul suave, verde sálvia e tons de pêssego. A composição fica mais especial quando mistura texturas e um detalhe inesperado.", bullets: ["Tons suaves com um ponto de cor", "Flores, laços e texturas em camadas", "Composições que crescem junto com a idade"] },
+  Unissex: { title: "Temas que cabem em todos os jeitos de celebrar", text: "Os temas unissex acompanham diferentes idades, irmãos e estilos de família. O segredo está em escolher uma paleta coerente e deixar a imagem principal conduzir a mesa.", bullets: ["Cores naturais, vibrantes ou inspiradas na natureza", "Elementos para meninos e meninas", "Mais liberdade para personalizar a mesa"] },
+  Celebrações: { title: "A decoração como memória de um momento", text: "Chás, batizados, casamentos e aniversários adultos pedem uma atmosfera. A tendência é trocar o excesso por uma composição com respiro, flores, luz e significado.", bullets: ["Paletas elegantes e pontos de brilho", "Mesa posta com aparência acolhedora", "Elementos que continuam bonitos nas fotografias"] },
+  "Adultos & sociais": { title: "Festas adultas mais autorais", text: "Para celebrar entre adultos, a decoração ganha personalidade: uma cor marcante, uma frase ou uma referência pessoal. O cenário fica próximo da identidade de quem comemora.", bullets: ["Cores profundas e combinações contemporâneas", "Frases, neon e referências pessoais", "Cenários compactos para receber bem em casa"] },
 };
+function makePages(): Page[] { const pages: Page[] = [{ kind: "cover", eyebrow: "Edição especial · Goianésia — GO", title: "A festa começa pela inspiração." }, { kind: "letter", eyebrow: "Carta da Jacque", title: "Uma revista para imaginar a sua festa", text: "Antes de existir uma mesa pronta, existe uma imagem na cabeça. Esta edição nasceu para ajudar você a encontrar essa imagem: folheando temas, descobrindo paletas e escolhendo um kit que faça sentido para a sua comemoração.\n\nVocê escolhe a inspiração, confirma a data com a equipe, retira o kit e monta o cenário do seu jeito." }]; MAGAZINE_CATEGORIES.slice(1).forEach((category) => { const trend = trendCopy[category]; pages.push({ kind: "trend", eyebrow: `Tendência · ${category}`, title: trend.title, text: trend.text, bullets: trend.bullets }); MAGAZINE_THEMES.filter((theme) => theme.category === category).forEach((theme) => pages.push({ kind: "theme", eyebrow: `${category} · inspiração`, title: theme.name, theme })); }); pages.push({ kind: "closing", eyebrow: "Última página, próximo capítulo", title: "Agora escolha a sua inspiração", text: "A disponibilidade depende da data da sua festa. Envie uma mensagem para a equipe e receba orientação para reservar o seu kit." }); return pages; }
+function themeDescription(theme: MagazineTheme) { const clean = theme.alt.split(" - ")[0] || "Uma composição pensada para celebrar"; return `${clean}. ${theme.name} é uma escolha para transformar a mesa em uma pequena narrativa, com uma decoração bonita, prática e com a cara da sua família.`; }
 
 export function DigitalMagazine() {
-  const [category, setCategory] = useState<(typeof MAGAZINE_CATEGORIES)[number]>("Todos");
-  const [query, setQuery] = useState("");
-
-  const filteredThemes = useMemo(() => {
-    const normalized = query.trim().toLocaleLowerCase("pt-BR");
-    return MAGAZINE_THEMES.filter((theme) => {
-      const inCategory = category === "Todos" || theme.category === category;
-      const inSearch = !normalized || `${theme.name} ${theme.category}`.toLocaleLowerCase("pt-BR").includes(normalized);
-      return inCategory && inSearch;
-    });
-  }, [category, query]);
-
-  return (
-    <PublicPageShell>
-      <PageMeta
-        title="Revista de Temas | Jacque Pegue & Monte em Goianésia – GO"
-        description="Revista digital com o catálogo completo de temas da Jacque Pegue & Monte em Goianésia – GO. Escolha sua inspiração e consulte a disponibilidade pelo WhatsApp."
-      />
-      <main className="magazine-page">
-        <section className="magazine-cover" aria-labelledby="magazine-title">
-          <div className="magazine-cover__wash" />
-          <div className="magazine-cover__content">
-            <p className="magazine-overline"><Sparkles size={14} /> Edição especial · Goianésia — GO</p>
-            <h1 id="magazine-title">A festa começa<br /><em>pela inspiração.</em></h1>
-            <p className="magazine-cover__dek">Uma revista para folhear sem pressa, descobrir combinações e encontrar o tema que transforma uma comemoração em memória.</p>
-            <div className="magazine-cover__actions">
-              <a className="magazine-button magazine-button--light" href="#sumario">Folhear a revista <ArrowDown size={16} /></a>
-              <a className="magazine-button magazine-button--outline" href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Falar com a Jacque <ArrowUpRight size={16} /></a>
-            </div>
-          </div>
-          <div className="magazine-cover__stamp"><span>J</span><strong>Jacque</strong><small>Pegue &amp; Monte</small></div>
-          <div className="magazine-cover__issue">VOL. 01<br /><strong>85 temas</strong></div>
-        </section>
-
-        <section className="magazine-manifesto" id="sumario">
-          <div className="magazine-manifesto__index"><span>01</span><span>02</span><span>03</span><span>04</span></div>
-          <div>
-            <p className="magazine-overline magazine-overline--pink">O acervo em uma nova leitura</p>
-            <h2>Escolher um tema<br /><em>também é criar.</em></h2>
-            <p>Na Jacque Pegue &amp; Monte, você encontra kits pensados para retirar, montar e celebrar do seu jeito. Nesta edição, reunimos o catálogo de inspirações em uma experiência mais gostosa de consultar: por clima, por idade, por ocasião ou simplesmente pelo tema que fez seu coração bater mais forte.</p>
-            <div className="magazine-manifesto__note"><Heart size={16} fill="currentColor" /> Salve seus favoritos e consulte a disponibilidade pelo WhatsApp.</div>
-          </div>
-          <div className="magazine-manifesto__side"><BookOpen size={30} /><strong>Como ler</strong><span>Escolha uma seção, toque em um tema e envie uma mensagem pronta para a equipe.</span></div>
-        </section>
-
-        <section className="magazine-catalog" id="catalogo-revista" aria-labelledby="catalog-title">
-          <div className="magazine-catalog__heading">
-            <div><p className="magazine-overline magazine-overline--pink">O grande acervo</p><h2 id="catalog-title">85 maneiras de<br /><em>comemorar.</em></h2></div>
-            <p>{categoryIntro[category]}</p>
-          </div>
-          <div className="magazine-toolbar">
-            <div className="magazine-search"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Buscar um tema..." aria-label="Buscar um tema" /></div>
-            <div className="magazine-count"><strong>{filteredThemes.length}</strong><span>inspirações</span></div>
-          </div>
-          <div className="magazine-filters" role="tablist" aria-label="Filtrar por categoria">
-            {MAGAZINE_CATEGORIES.map((item) => <button key={item} type="button" role="tab" aria-selected={category === item} className={category === item ? "magazine-filter magazine-filter--active" : "magazine-filter"} onClick={() => setCategory(item)}>{item}</button>)}
-          </div>
-          <div className="magazine-grid">
-            {filteredThemes.map((theme, index) => <article className="magazine-card" key={`${theme.name}-${index}`}>
-              <div className="magazine-card__image"><img src={theme.image} alt={theme.alt || `Decoração ${theme.name} em Goianésia – GO`} loading="lazy" onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = "/manus-storage/jacque-catalog-atmosphere_ace0ecd7.jpg"; }} /><span>{String(index + 1).padStart(2, "0")}</span></div>
-              <div className="magazine-card__body"><p>{theme.category}</p><h3>{theme.name}</h3><a href={theme.whatsapp} target="_blank" rel="noreferrer">Consultar disponibilidade <ArrowUpRight size={15} /></a></div>
-            </article>)}
-          </div>
-          {filteredThemes.length === 0 && <div className="magazine-empty"><Search size={26} /><h3>Nenhuma inspiração encontrada</h3><p>Tente buscar por outro nome ou escolha outra seção da revista.</p></div>}
-        </section>
-
-        <section className="magazine-cta" aria-label="Chamada para orçamento">
-          <div><p className="magazine-overline">O próximo capítulo é seu</p><h2>Encontrou o tema<br /><em>da sua festa?</em></h2><p>Envie uma mensagem para a equipe. A disponibilidade e os detalhes do kit são confirmados para a sua data.</p></div>
-          <a className="magazine-button magazine-button--dark" href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Abrir conversa no WhatsApp <ArrowUpRight size={17} /></a>
-        </section>
-        <div className="magazine-back"><Link href="/">Voltar para a página inicial</Link></div>
-      </main>
-    </PublicPageShell>
-  );
+  const pages = useMemo(makePages, []); const [page, setPage] = useState(0); const [motion, setMotion] = useState<"next" | "previous">("next"); const [touch, setTouch] = useState<number | null>(null); const current = pages[page];
+  const go = (index: number, direction: "next" | "previous") => { if (index < 0 || index >= pages.length) return; setMotion(direction); setPage(index); };
+  useEffect(() => { const key = (event: KeyboardEvent) => { if (event.key === "ArrowRight" || event.key === " ") go(page + 1, "next"); if (event.key === "ArrowLeft") go(page - 1, "previous"); }; window.addEventListener("keydown", key); return () => window.removeEventListener("keydown", key); }, [page]);
+  return <PublicPageShell><PageMeta title="Revista Jacque Pegue & Monte | Inspirações para festas em Goianésia" description="Folheie a revista digital da Jacque Pegue & Monte com decorações, kits e tendências para sua festa em Goianésia – GO." /><main className="flipbook-page"><section className="flipbook-intro"><p className="flipbook-kicker"><BookOpen size={15} /> Revista Jacque Pegue &amp; Monte</p><h1>Folheie. <em>Imagine.</em><br />Escolha.</h1><p>Uma edição visual com histórias, tendências e inspirações para encontrar a decoração que combina com o seu momento.</p></section><section className="flipbook-stage" aria-label="Revista digital interativa"><div className="flipbook-toolbar"><div className="flipbook-toolbar__brand"><span>J</span><strong>JACQUE</strong><small>PEGUE &amp; MONTE</small></div><div className="flipbook-toolbar__meta"><span>EDIÇÃO 01</span><strong>{String(page + 1).padStart(2, "0")} / {String(pages.length).padStart(2, "0")}</strong></div></div><div className={`flipbook-sheet flipbook-sheet--${current.kind} flipbook-sheet--${motion}`} key={page} onTouchStart={(event) => setTouch(event.touches[0]?.clientX ?? null)} onTouchEnd={(event) => { if (touch === null) return; const distance = (event.changedTouches[0]?.clientX ?? touch) - touch; if (Math.abs(distance) > 45) go(page + (distance < 0 ? 1 : -1), distance < 0 ? "next" : "previous"); setTouch(null); }}>{current.kind === "cover" && <div className="flipbook-cover-content"><div className="flipbook-cover-mark"><Sparkles size={16} /> edição especial</div><h2>{current.title}</h2><p>Temas, kits e ideias para celebrar em Goianésia — GO</p><div className="flipbook-cover-foot"><span>VOL. 01</span><strong>85 inspirações</strong></div></div>}{current.kind === "letter" && <div className="flipbook-editorial-content"><p className="flipbook-eyebrow">{current.eyebrow}</p><h2>{current.title}</h2>{current.text?.split("\n").map((text) => <p key={text}>{text}</p>)}<div className="flipbook-signature">Com carinho,<br /><em>Jacque</em></div></div>}{current.kind === "trend" && <div className="flipbook-trend-content"><p className="flipbook-eyebrow">{current.eyebrow}</p><h2>{current.title}</h2><p className="flipbook-trend-lead">{current.text}</p><div className="flipbook-trend-list">{current.bullets?.map((bullet, index) => <div key={bullet}><span>0{index + 1}</span><p>{bullet}</p></div>)}</div><div className="flipbook-trend-quote"><Heart size={17} fill="currentColor" /> A tendência mais bonita é a que combina com a sua história.</div></div>}{current.kind === "theme" && current.theme && <ThemePage theme={current.theme} />}{current.kind === "closing" && <div className="flipbook-closing-content"><p className="flipbook-eyebrow">{current.eyebrow}</p><h2>{current.title}</h2><p>{current.text}</p><a href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer" className="flipbook-cta">Consultar disponibilidade <ArrowUpRight size={17} /></a><div className="flipbook-closing-mark"><Sparkles size={20} /> Jacque Pegue &amp; Monte</div></div>}</div><div className="flipbook-controls"><button type="button" onClick={() => go(page - 1, "previous")} disabled={page === 0} aria-label="Página anterior"><ArrowLeft size={18} /></button><div className="flipbook-progress"><span style={{ width: `${(page / (pages.length - 1)) * 100}%` }} /></div><button type="button" onClick={() => go(page + 1, "next")} disabled={page === pages.length - 1} aria-label="Próxima página"><ArrowRight size={18} /></button></div><p className="flipbook-hint">Arraste no celular ou use as setas para folhear</p></section><nav className="flipbook-index" aria-label="Índice da revista"><p><Sparkles size={14} /> Ir para uma seção</p><div>{MAGAZINE_CATEGORIES.slice(1).map((category) => <button key={category} type="button" onClick={() => { const index = pages.findIndex((item) => item.kind === "theme" && item.theme?.category === category); go(index, "next"); }}>{category}</button>)}</div></nav><div className="flipbook-footer"><Link href="/">Voltar para a página inicial</Link><a href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer">Falar com a equipe <ArrowUpRight size={14} /></a></div></main></PublicPageShell>;
 }
+function ThemePage({ theme }: { theme: MagazineTheme }) { return <div className="flipbook-theme-content"><div className="flipbook-theme-photo"><img src={theme.image} alt={theme.alt || `Decoração ${theme.name} em Goianésia – GO`} onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = "/manus-storage/jacque-catalog-atmosphere_ace0ecd7.jpg"; }} /><span>tema</span></div><div className="flipbook-theme-copy"><p className="flipbook-eyebrow">{theme.category} · edição 01</p><h2>{theme.name}</h2><p className="flipbook-theme-lead">{themeDescription(theme)}</p><p>Uma inspiração para celebrar com beleza e praticidade, deixando espaço para os detalhes que tornam a sua festa única.</p><p className="flipbook-theme-detail">Kit sujeito à disponibilidade da data. Consulte a equipe sobre composição, retirada e condições.</p><a href={theme.whatsapp} target="_blank" rel="noreferrer" className="flipbook-theme-link">Consultar este tema <ArrowUpRight size={15} /></a></div></div>; }
