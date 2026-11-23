@@ -1,3 +1,4 @@
 
-/* Comemoração da vitória do Jacque Puzzle */
-.puzzle-victory{position:relative;overflow:hidden}.puzzle-confetti{position:absolute;z-index:0;inset:0;pointer-events:none}.puzzle-confetti i{position:absolute;top:-14px;left:var(--confetti-x);width:7px;height:12px;border-radius:2px;background:var(--confetti-color);opacity:0;animation:confetti-fall 1.7s cubic-bezier(.2,.8,.35,1) var(--confetti-delay) both;transform:rotate(0deg)}.puzzle-victory>*:not(.puzzle-confetti){position:relative;z-index:1}@keyframes confetti-fall{0%{opacity:0;transform:translate3d(0,-12px,0) rotate(0deg)}12%{opacity:1}100%{opacity:0;transform:translate3d(calc((var(--confetti-x) - 50%) * .35),130px,0) rotate(500deg)}}@media(prefers-reduced-motion:reduce){.puzzle-confetti{display:none}}
+/* Apresentação independente do jogo: palco limpo para demonstrações e lives */
+.standalone-puzzle .seo-header,.standalone-puzzle .seo-footer{display:none}.standalone-puzzle .seo-page-shell{min-height:100vh}.standalone-puzzle .puzzle-hero{padding-top:72px}.standalone-puzzle .puzzle-page{min-height:100vh}
+@media(max-width:700px){.standalone-puzzle .puzzle-hero{padding-top:42px}}
